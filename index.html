@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Algérie Télécom — Le premier opérateur national de télécommunications connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.">
+  <title>Algérie Télécom — Accueil</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- New: scoped button styles for the hero CTAs -->
+  <style>
+    /* Hero CTA buttons */
+    .hero-cta { display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
+    .hero-cta .button {
+      font-weight:600;
+      border-radius:12px;
+      padding:12px 20px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+    .hero-cta .button.primary{
+      background:linear-gradient(90deg,#0066ff,#33a1ff);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(51,161,255,.18);
+      border: none;
+    }
+    .hero-cta .button.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(51,161,255,.22); }
+    .hero-cta .button.outline{
+      background:transparent;
+      color:#0066ff;
+      border:2px solid rgba(0,102,255,.12);
+      backdrop-filter: blur(6px);
+    }
+    .hero-cta .button.outline:hover{ background:rgba(0,102,255,.06); transform:translateY(-2px); }
+    @media (max-width:480px){ .hero-cta { width:100%; } .hero-cta .button{ flex:1 1 auto; text-align:center; } }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="AlgerieTelecom.png" alt="Logo" class="nav-logo">
+      <span class="nav-title">Algérie <span>Télécom</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="service.html">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="about.html">À Propos</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Wrapper ── -->
+  <div class="page-wrapper">
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div>
+        <img src="AlgerieTelecom.png" alt="Algérie Télécom" class="hero-logo" style="display: block; margin: 0 auto 24px; width: 120px; height: auto;">
+        <div class="hero-badge" style="text-align: center;">Toujours proche · دائما أقرب</div>
+        <h1 style="text-align: center;">Bienvenue chez<br>Algérie Télécom</h1>
+        <p style="text-align: center;">Le premier opérateur national de télécommunications — connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.</p>
+        <div class="hero-cta" style="display: block;
+          margin: 24px auto 0;
+          text-align: center;          max-width: 400px;">
+          <a href="service.html" class="button primary">🚀 Nos Services</a>
+          <a href="contact.html" class="button outline">Nous Contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stats ── -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-number">15M+</span>
+        <span class="stat-label">Abonnés</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">48</span>
+        <span class="stat-label">Wilayas couvertes</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">1Gbps</span>
+        <span class="stat-label">Fibre Optique</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Support Client</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ── Présentation ── -->
+    <section class="section">
+      <div class="section-label">À Propos</div>
+      <h2>Le Pionnier des<br>Télécommunications</h2>
+      <p>Algérie Télécom est la principale entreprise de télécommunications en Algérie, engagée à fournir une connectivité fiable, rapide et innovante à travers tout le territoire national.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Internet Haut Débit</h3>
+          <p>Surfer, télécharger et communiquer à grande vitesse grâce à notre infrastructure ADSL et Fibre Optique de dernière génération.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Services Mobiles</h3>
+          <p>Restez connecté avec vos proches où que vous soyez grâce à notre réseau mobile à couverture nationale étendue.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏢</div>
+          <h3>Solutions Entreprise</h3>
+          <p>Optimisez vos communications professionnelles avec nos offres dédiées : VPN, téléphonie IP, connectivité sécurisée.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Services Summary ── -->
+    <section class="section">
+      <div class="section-label">Nos Offres</div>
+      <h2>Des Solutions pour<br>Chaque Besoin</h2>
+      <p>De la fibre optique ultra-rapide aux solutions d'entreprise, nous avons une offre adaptée à chaque client.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>ADSL</h3>
+          <p>Connexion haut débit accessible sur l'ensemble du réseau téléphonique national, idéale pour les particuliers.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔆</div>
+          <h3>Fibre Optique</h3>
+          <p>Vitesses exceptionnelles allant jusqu'à 1 Gbps grâce au réseau de fibre optique déployé dans les grandes villes.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">☎️</div>
+          <h3>Téléphonie Fixe</h3>
+          <p>Qualité d'appel remarquable et tarifs avantageux sur notre réseau de téléphonie fixe historique.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
+      <div class="footer-social">
+        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+      </div>
+      <div class="footer-nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">À Propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
+      <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" title="Retour au top">↑</button>
+
+  <script src="main.js"></script>
+</body>
+</html>

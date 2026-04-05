@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez Algérie Télécom — Retrouvez nos coordonnées, horaires et formulaire de contact pour vos demandes.">
+  <title>Contact — Algérie Télécom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="AlgerieTelecom.png" alt="Logo" class="nav-logo">
+      <span class="nav-title">Algérie <span>Télécom</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="service.html">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="about.html">À Propos</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ── Header ── -->
+    <div class="services-hero">
+      <div class="section-label" style="justify-content:center;">Support & Info</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">Contactez-nous</h2>
+      <p style="color:var(--text-secondary);max-width:480px;margin:0 auto 56px;line-height:1.8;">
+        Notre équipe est disponible pour répondre à toutes vos questions, demandes d'information ou réclamations.
+      </p>
+    </div>
+
+    <section class="section" style="padding-top:0;">
+      <div class="contact-grid">
+
+        <!-- ── Contact Info ── -->
+        <div class="contact-info-card">
+          <h3>📍 Nos Coordonnées</h3>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-text">
+              <strong>Email</strong>
+              <span>contact@algerietelecom.dz</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text">
+              <strong>Téléphone</strong>
+              <span>+213 21 00 00 00</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🏛️</div>
+            <div class="contact-item-text">
+              <strong>Adresse</strong>
+              <span>123 Rue de l'Internet<br>Alger, Algérie</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-text">
+              <strong>Horaires</strong>
+              <span>Dim – Jeu : 08h00 – 17h00<br>Support : 24h/24</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--glass-border);">
+            <div class="section-label" style="margin-bottom:12px;">Localisation</div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.1977263834907!2d3.0587102!3d36.7538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f897f8e9d9d9d9d%3A0x0!2sAlg%C3%A9rie%20T%C3%A9l%C3%A9com!5e0!3m2!1sfr!2sdz!4v1234567890" style="width:100%;height:280px;border:none;border-radius:var(--radius-md);margin-top:14px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <!-- ── Contact Form ── -->
+        <div class="contact-form-card">
+          <h3>💬 Envoyez-nous un Message</h3>
+
+          <div class="form-group">
+            <label for="name">Nom Complet</label>
+            <input type="text" id="name" placeholder="Votre nom et prénom">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adresse Email</label>
+            <input type="email" id="email" placeholder="exemple@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" placeholder="+213 XX XX XX XX">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Votre Message</label>
+            <textarea id="message" placeholder="Décrivez votre demande ou question..."></textarea>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;" onclick="handleSubmit()">
+            🚀 Envoyer le Message
+          </button>
+
+          <p style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:14px;">
+            Réponse garantie sous 24 heures ouvrables
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
+      <div class="footer-social">
+        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+      </div>
+      <div class="footer-nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">À Propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
+      <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
+    </footer>
+
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" title="Retour au top">↑</button>
+
+  <script src="main.js"></script>
+  <script>
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      if (!name || !email || !message) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+      
+      alert('✅ Message envoyé avec succès ! Nous vous répondrons sous 24h.');
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('message').value = '';
+    }
+  </script>
+</body>
+</html>
