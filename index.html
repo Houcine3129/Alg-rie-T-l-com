@@ -6,76 +6,41 @@
   <meta name="description" content="Algérie Télécom — Le premier opérateur national de télécommunications connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.">
   <title>Algérie Télécom — Accueil</title>
   <link rel="stylesheet" href="style.css">
-  <!-- New: scoped button styles for the hero CTAs -->
-  <style>
-    /* Hero CTA buttons */
-    .hero-cta { display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
-    .hero-cta .button {
-      font-weight:600;
-      border-radius:12px;
-      padding:12px 20px;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-    }
-    .hero-cta .button.primary{
-      background:linear-gradient(90deg,#0066ff,#33a1ff);
-      color:#fff;
-      box-shadow:0 8px 20px rgba(51,161,255,.18);
-      border: none;
-    }
-    .hero-cta .button.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(51,161,255,.22); }
-    .hero-cta .button.outline{
-      background:transparent;
-      color:#0066ff;
-      border:2px solid rgba(0,102,255,.12);
-      backdrop-filter: blur(6px);
-    }
-    .hero-cta .button.outline:hover{ background:rgba(0,102,255,.06); transform:translateY(-2px); }
-    @media (max-width:480px){ .hero-cta { width:100%; } .hero-cta .button{ flex:1 1 auto; text-align:center; } }
-  </style>
 </head>
 <body>
 
   <!-- ── Navigation ── -->
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
-      <img src="AlgerieTelecom.png" alt="Logo" class="nav-logo">
+      <img src="AlgerieTelecom.png" alt="Logo Algérie Télécom" class="nav-logo">
       <span class="nav-title">Algérie <span>Télécom</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="service.html">Services</a></li>
-      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarif.html">Tarifs</a></li>
       <li><a href="about.html">À Propos</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ── Page Wrapper ── -->
   <div class="page-wrapper">
 
     <!-- ── Hero ── -->
     <section class="hero">
       <div class="hero-glow"></div>
-      <div>
-        <img src="AlgerieTelecom.png" alt="Algérie Télécom" class="hero-logo" style="display: block; margin: 0 auto 24px; width: 120px; height: auto;">
-        <div class="hero-badge" style="text-align: center;">Toujours proche · دائما أقرب</div>
-        <h1 style="text-align: center;">Bienvenue chez<br>Algérie Télécom</h1>
-        <p style="text-align: center;">Le premier opérateur national de télécommunications — connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.</p>
-        <div class="hero-cta" style="display: block;
-          margin: 24px auto 0;
-          text-align: center;          max-width: 400px;">
-          <a href="service.html" class="button primary">🚀 Nos Services</a>
-          <a href="contact.html" class="button outline">Nous Contacter</a>
+      <div style="width:100%;max-width:760px;margin:0 auto;text-align:center;">
+        <img src="AlgerieTelecom.png" alt="Algérie Télécom" class="hero-logo">
+        <div class="hero-badge" style="margin-top:22px;">Toujours proche · دائما أقرب</div>
+        <h1>Bienvenue chez<br>Algérie Télécom</h1>
+        <p>Le premier opérateur national de télécommunications — connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+          <a href="services.html" class="btn btn-primary">🚀 Nos Services</a>
+          <a href="contact.html"  class="btn btn-outline">Nous Contacter</a>
         </div>
       </div>
     </section>
@@ -91,7 +56,7 @@
         <span class="stat-label">Wilayas couvertes</span>
       </div>
       <div class="stat-box">
-        <span class="stat-number">1Gbps</span>
+        <span class="stat-number">1 Gbps</span>
         <span class="stat-label">Fibre Optique</span>
       </div>
       <div class="stat-box">
@@ -129,11 +94,11 @@
 
     <hr class="divider">
 
-    <!-- ── Services Summary ── -->
+    <!-- ── Nos Offres ── -->
     <section class="section">
       <div class="section-label">Nos Offres</div>
       <h2>Des Solutions pour<br>Chaque Besoin</h2>
-      <p>De la fibre optique ultra-rapide aux solutions d'entreprise, nous avons une offre adaptée à chaque client.</p>
+      <p>De la fibre optique ultra-rapide aux solutions d'entreprise, une offre adaptée à chaque client.</p>
 
       <div class="cards-grid">
         <div class="card">
@@ -158,28 +123,26 @@
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
       <div class="footer-social">
-        <a href="#" title="Facebook" aria-label="Facebook">f</a>
-        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+        <a href="#" title="Facebook"  aria-label="Facebook">f</a>
+        <a href="#" title="Twitter"   aria-label="Twitter">𝕏</a>
         <a href="#" title="Instagram" aria-label="Instagram">📷</a>
-        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+        <a href="#" title="LinkedIn"  aria-label="LinkedIn">in</a>
       </div>
-      <div class="footer-nav-links">
+      <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
-        <a href="service.html">Services</a>
-        <a href="tarifs.html">Tarifs</a>
+        <a href="services.html">Services</a>
+        <a href="tarif.html">Tarifs</a>
         <a href="about.html">À Propos</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </nav>
       <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
       <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
     </footer>
 
-  </div><!-- /page-wrapper -->
+  </div>
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" title="Retour au top">↑</button>
-
+  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page">↑</button>
   <script src="main.js"></script>
 </body>
 </html>
