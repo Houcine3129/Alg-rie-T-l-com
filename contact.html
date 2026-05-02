@@ -12,31 +12,29 @@
   <!-- ── Navigation ── -->
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
-      <img src="AlgerieTelecom.png" alt="Logo" class="nav-logo">
+      <img src="AlgerieTelecom.png" alt="Logo Algérie Télécom" class="nav-logo">
       <span class="nav-title">Algérie <span>Télécom</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="service.html">Services</a></li>
-      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarif.html">Tarifs</a></li>
       <li><a href="about.html">À Propos</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
-    <button class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
   <div class="page-wrapper">
 
-    <!-- ── Header ── -->
+    <!-- ── En-tête ── -->
     <div class="services-hero">
       <div class="section-label" style="justify-content:center;">Support & Info</div>
       <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">Contactez-nous</h2>
-      <p style="color:var(--text-secondary);max-width:480px;margin:0 auto 56px;line-height:1.8;">
+      <p style="max-width:480px;margin:0 auto 56px;line-height:1.8;">
         Notre équipe est disponible pour répondre à toutes vos questions, demandes d'information ou réclamations.
       </p>
     </div>
@@ -44,12 +42,12 @@
     <section class="section" style="padding-top:0;">
       <div class="contact-grid">
 
-        <!-- ── Contact Info ── -->
+        <!-- Coordonnées -->
         <div class="contact-info-card">
-          <h3>📍 Nos Coordonnées</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Nos Coordonnées</h3>
 
           <div class="contact-item">
-            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div class="contact-item-text">
               <strong>Email</strong>
               <span>contact@algerietelecom.dz</span>
@@ -57,7 +55,7 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
             <div class="contact-item-text">
               <strong>Téléphone</strong>
               <span>+213 21 00 00 00</span>
@@ -65,57 +63,99 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon">🏛️</div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M9 21V5l4-4 4 4v16M13 21v-8h-4v8"/></svg></div>
             <div class="contact-item-text">
               <strong>Adresse</strong>
-              <span>123 Rue de l'Internet<br>Alger, Algérie</span>
+              <span>1, Rue Docteur Saïd Houari<br>Alger, Algérie</span>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="contact-item-text">
               <strong>Horaires</strong>
-              <span>Dim – Jeu : 08h00 – 17h00<br>Support : 24h/24</span>
+              <span>Dim – Jeu : 08h00 – 17h00<br>Support technique : 24h/24</span>
             </div>
           </div>
 
-          <!-- Divider -->
-          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--glass-border);">
-            <div class="section-label" style="margin-bottom:12px;">Localisation</div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.1977263834907!2d3.0587102!3d36.7538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f897f8e9d9d9d9d%3A0x0!2sAlg%C3%A9rie%20T%C3%A9l%C3%A9com!5e0!3m2!1sfr!2sdz!4v1234567890" style="width:100%;height:280px;border:none;border-radius:var(--radius-md);margin-top:14px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--glass-border);">
+            <div class="section-label" style="margin-bottom:10px;">Localisation</div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.1977263834907!2d3.0587102!3d36.7538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f897f8e9d9d9d9d%3A0x0!2sAlg%C3%A9rie%20T%C3%A9l%C3%A9com!5e0!3m2!1sfr!2sdz!4v1234567890"
+              style="width:100%;height:260px;border:none;border-radius:var(--radius-md);margin-top:12px;filter:grayscale(30%);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Localisation Algérie Télécom">
+            </iframe>
           </div>
         </div>
 
-        <!-- ── Contact Form ── -->
+        <!-- Formulaire -->
         <div class="contact-form-card">
-          <h3>💬 Envoyez-nous un Message</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Envoyez-nous un Message</h3>
 
-          <div class="form-group">
-            <label for="name">Nom Complet</label>
-            <input type="text" id="name" placeholder="Votre nom et prénom">
+          <!-- Message statut -->
+          <div id="form-status"></div>
+
+          <form id="contactForm" action="traitement.php" method="POST" novalidate>
+
+            <!-- Honeypot anti-spam (caché) -->
+            <input type="text" name="hp_site" style="display:none;" tabindex="-1" autocomplete="off">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name">
+            </div>
           </div>
 
           <div class="form-group">
             <label for="email">Adresse Email</label>
-            <input type="email" id="email" placeholder="exemple@email.com">
+            <input type="email" id="email" name="email" placeholder="exemple@email.com" autocomplete="email">
           </div>
 
           <div class="form-group">
-            <label for="phone">Téléphone</label>
-            <input type="tel" id="phone" placeholder="+213 XX XX XX XX">
+            <label for="telephone">Téléphone <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optionnel)</span></label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+213 XX XX XX XX" autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label for="wilaya">Wilaya</label>
+            <select id="wilaya" name="wilaya_id">
+              <option value="">— Chargement des wilayas… —</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sujet">Objet de la demande</label>
+            <select id="sujet" name="sujet">
+              <option value="">— Sélectionner —</option>
+              <option value="souscription">Souscription</option>
+              <option value="resiliation">Résiliation</option>
+              <option value="incident">Incident technique</option>
+              <option value="facturation">Facturation</option>
+              <option value="entreprise">Solutions entreprise</option>
+              <option value="autre">Autre</option>
+            </select>
           </div>
 
           <div class="form-group">
             <label for="message">Votre Message</label>
-            <textarea id="message" placeholder="Décrivez votre demande ou question..."></textarea>
+            <textarea id="message" name="message" placeholder="Décrivez votre demande ou question (20 caractères minimum)..."></textarea>
           </div>
 
-          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;" onclick="handleSubmit()">
-            🚀 Envoyer le Message
+          <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;" onclick="handleSubmit()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Envoyer le Message
           </button>
 
-          <p style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:14px;">
+          </form>
+
+          <p style="font-size:0.76rem;color:var(--text-muted);text-align:center;margin-top:12px;">
             Réponse garantie sous 24 heures ouvrables
           </p>
         </div>
@@ -126,46 +166,74 @@
     <!-- ── Footer ── -->
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-      <div class="footer-social">
-        <a href="#" title="Facebook" aria-label="Facebook">f</a>
-        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
-        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
-        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+            <div class="footer-social">
+        <a href="#" title="Facebook"  aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" title="Twitter"   aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg></a>
+        <a href="#" title="LinkedIn"  aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
-      <div class="footer-nav-links">
+      <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
-        <a href="service.html">Services</a>
-        <a href="tarifs.html">Tarifs</a>
+        <a href="services.html">Services</a>
+        <a href="tarif.html">Tarifs</a>
         <a href="about.html">À Propos</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </nav>
       <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
       <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
     </footer>
 
   </div>
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" title="Retour au top">↑</button>
-
+  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
   <script src="main.js"></script>
   <script>
-    function handleSubmit() {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      
-      if (!name || !email || !message) {
-        alert('Veuillez remplir tous les champs obligatoires.');
-        return;
+    // ── Afficher message statut (retour de traitement.php) ──
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const statut = params.get('statut');
+      const el = document.getElementById('form-status');
+      if (!el) return;
+      if (statut === 'succes') {
+        el.innerHTML = `<div style="background:rgba(0,160,75,0.15);border:1px solid var(--at-green);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:20px;color:var(--at-green-light);font-size:0.9rem;">
+          ✅ Message envoyé avec succès ! Nous vous répondrons sous 24h ouvrables.
+        </div>`;
+        // Nettoyer l'URL sans recharger
+        history.replaceState(null, '', 'contact.html');
+      } else if (statut === 'erreur') {
+        el.innerHTML = `<div style="background:rgba(220,50,50,0.12);border:1px solid rgba(220,50,50,0.4);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:20px;color:#ff8080;font-size:0.9rem;">
+          ❌ Une erreur s'est produite. Veuillez vérifier vos informations et réessayer.
+        </div>`;
+        history.replaceState(null, '', 'contact.html');
       }
-      
-      alert('✅ Message envoyé avec succès ! Nous vous répondrons sous 24h.');
-      document.getElementById('name').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('phone').value = '';
-      document.getElementById('message').value = '';
+    })();
+
+    // ── Validation avant soumission ──────────────────────────
+    function handleSubmit() {
+      const prenom  = document.getElementById('prenom').value.trim();
+      const nom     = document.getElementById('nom').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const sujet   = document.getElementById('sujet').value;
+      const wilaya  = document.getElementById('wilaya').value;
+
+      if (!prenom || !nom)     { showError('Veuillez saisir votre prénom et nom.'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Adresse email invalide.'); return; }
+      if (!wilaya)             { showError('Veuillez sélectionner votre wilaya.'); return; }
+      if (!sujet)              { showError('Veuillez sélectionner un objet.'); return; }
+      if (message.length < 20) { showError('Le message doit contenir au moins 20 caractères.'); return; }
+
+      // Tout est valide → soumettre le formulaire PHP
+      document.getElementById('contactForm').submit();
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('form-status');
+      el.innerHTML = `<div style="background:rgba(220,50,50,0.12);border:1px solid rgba(220,50,50,0.4);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:16px;color:#ff8080;font-size:0.88rem;">
+        ⚠️ ${msg}
+      </div>`;
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   </script>
 </body>
