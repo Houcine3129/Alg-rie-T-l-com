@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez nos services de télécommunications — Internet haut débit, fibre optique, mobile 4G/LTE, téléphonie fixe et solutions entreprise.">
+  <meta name="description"
+    content="Découvrez nos services de télécommunications — Internet haut débit, fibre optique, mobile 4G/LTE, téléphonie fixe et solutions entreprise.">
   <title>Services — Algérie Télécom</title>
   <link rel="stylesheet" href="style.css">
+  <script>if(localStorage.getItem('at-theme')==='light'){document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('light-mode');});}</script>
 </head>
+
 <body>
 
   <!-- ── Navigation ── -->
@@ -23,6 +27,16 @@
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+          <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer de thème">
+        <div class="theme-toggle-track">
+          <div class="theme-toggle-thumb">
+            <!-- moon (dark mode icon) -->
+            <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            <!-- sun (light mode icon) -->
+            <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z"/></svg>
+          </div>
+        </div>
+      </button>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -33,9 +47,11 @@
     <!-- ── En-tête ── -->
     <div class="services-hero">
       <div class="section-label" style="justify-content:center;">Catalogue Complet</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">Nos Services</h2>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">
+        Nos Services</h2>
       <p style="max-width:520px;margin:0 auto 48px;line-height:1.8;">
-        Découvrez notre gamme complète de solutions télécoms conçues pour répondre aux besoins des particuliers, des professionnels et des entreprises.
+        Découvrez notre gamme complète de solutions télécoms conçues pour répondre aux besoins des particuliers, des
+        professionnels et des entreprises.
       </p>
     </div>
 
@@ -64,13 +80,19 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- bolt / ADSL -->
-          <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>ADSL — Internet Haut Débit</h3>
-          <p>Profitez d'une connexion stable et rapide via le réseau téléphonique filaire. Idéal pour le surf, le streaming, et l'envoi d'emails, disponible dans toutes les wilayas du pays.</p>
+          <p>Profitez d'une connexion stable et rapide via le réseau téléphonique filaire. Idéal pour le surf, le
+            streaming, et l'envoi d'emails, disponible dans toutes les wilayas du pays.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+            </svg>
             Jusqu'à 20 Mbps
           </span>
         </div>
@@ -79,13 +101,21 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- wifi / fibre -->
-          <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>Fibre Optique — Ultra Haut Débit</h3>
-          <p>Accédez à des vitesses de connexion exceptionnelles grâce à notre infrastructure Fibre Optique de dernière génération. Téléchargez des films en secondes, jouez en ligne sans latence, télétravaillez sans interruption.</p>
+          <p>Accédez à des vitesses de connexion exceptionnelles grâce à notre infrastructure Fibre Optique de dernière
+            génération. Téléchargez des films en secondes, jouez en ligne sans latence, télétravaillez sans
+            interruption.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z" />
+            </svg>
             Jusqu'à 1 Gbps
           </span>
         </div>
@@ -100,13 +130,20 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- smartphone -->
-          <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>Services Mobiles</h3>
-          <p>Restez en contact avec vos proches grâce à nos offres mobiles compétitives. Couverture 4G/LTE sur l'ensemble du territoire, roaming international, et forfaits adaptés à tous les profils.</p>
+          <p>Restez en contact avec vos proches grâce à nos offres mobiles compétitives. Couverture 4G/LTE sur
+            l'ensemble du territoire, roaming international, et forfaits adaptés à tous les profils.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+            </svg>
             4G/LTE Nationale
           </span>
         </div>
@@ -115,13 +152,19 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- phone call -->
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>Téléphonie Fixe</h3>
-          <p>Notre réseau de téléphonie fixe historique garantit une qualité d'appel remarquable avec des tarifs avantageux pour les communications locales, nationales et internationales.</p>
+          <p>Notre réseau de téléphonie fixe historique garantit une qualité d'appel remarquable avec des tarifs
+            avantageux pour les communications locales, nationales et internationales.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
             Qualité HD
           </span>
         </div>
@@ -136,13 +179,19 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- business building -->
-          <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>Solutions d'Entreprise — Communication Intégrée</h3>
-          <p>Nos solutions B2B couvrent la téléphonie IP, la connectivité sécurisée par VPN, la gestion de réseau multi-sites et les lignes dédiées haute disponibilité.</p>
+          <p>Nos solutions B2B couvrent la téléphonie IP, la connectivité sécurisée par VPN, la gestion de réseau
+            multi-sites et les lignes dédiées haute disponibilité.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+            </svg>
             VPN · IP · MPLS
           </span>
         </div>
@@ -151,13 +200,19 @@
       <div class="service-detail-card">
         <div class="service-detail-icon">
           <!-- storage / server -->
-          <svg viewBox="0 0 24 24"><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z" />
+          </svg>
         </div>
         <div class="service-detail-content">
           <h3>Hébergement &amp; Data Centers</h3>
-          <p>Hébergez vos données et applications dans nos centres de données sécurisés situés en Algérie. Conformité réglementaire, disponibilité 99,9%, sauvegardes automatiques, et support technique dédié 24h/24.</p>
+          <p>Hébergez vos données et applications dans nos centres de données sécurisés situés en Algérie. Conformité
+            réglementaire, disponibilité 99,9%, sauvegardes automatiques, et support technique dédié 24h/24.</p>
           <span class="service-tag">
-            <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+            </svg>
             Cloud · Colocation
           </span>
         </div>
@@ -168,7 +223,9 @@
     <!-- ── CTA ── -->
     <div style="text-align:center;padding:40px 24px 80px;">
       <a href="contact.html" class="btn btn-primary" style="font-size:1rem;padding:15px 36px;">
-        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+        </svg>
         Demander un devis
       </a>
     </div>
@@ -176,11 +233,24 @@
     <!-- ── Footer ── -->
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-            <div class="footer-social">
-        <a href="#" title="Facebook"  aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <a href="#" title="Twitter"   aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg></a>
-        <a href="#" title="LinkedIn"  aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <div class="footer-social">
+        <a href="#" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg></a>
+        <a href="#" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg></a>
+        <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
+          </svg></a>
+        <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+            <circle cx="4" cy="4" r="2" />
+          </svg></a>
       </div>
       <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
@@ -197,8 +267,11 @@
   </div>
 
   <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page">
-    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+    </svg>
   </button>
   <script src="main.js"></script>
 </body>
+
 </html>
