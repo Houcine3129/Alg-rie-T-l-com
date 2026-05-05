@@ -4,14 +4,14 @@
 function initMobileMenu() {
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
-  
+
   if (!hamburger) return;
-  
+
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('open');
   });
-  
+
   // Close menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
@@ -26,9 +26,9 @@ function initMobileMenu() {
 // ════════════════════════════════════════════════════════
 function initScrollToTop() {
   const scrollBtn = document.querySelector('.scroll-to-top');
-  
+
   if (!scrollBtn) return;
-  
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
       scrollBtn.classList.add('show');
@@ -36,7 +36,7 @@ function initScrollToTop() {
       scrollBtn.classList.remove('show');
     }
   });
-  
+
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -47,9 +47,9 @@ function initScrollToTop() {
 // ════════════════════════════════════════════════════════
 function initNavbarScroll() {
   const navbar = document.querySelector('.navbar');
-  
+
   if (!navbar) return;
-  
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -86,10 +86,10 @@ function initScrollAnimations() {
 // ════════════════════════════════════════════════════════
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
-  
+
   faqItems.forEach(item => {
     const header = item.querySelector('.faq-header');
-    
+
     if (header) {
       header.addEventListener('click', () => {
         // Close other items in same category
@@ -101,7 +101,7 @@ function initFaqAccordion() {
             }
           });
         }
-        
+
         item.classList.toggle('active');
       });
     }
@@ -113,11 +113,11 @@ function initFaqAccordion() {
 // ════════════════════════════════════════════════════════
 function initFormValidation() {
   const form = document.querySelector('.contact-form-card');
-  
+
   if (!form) return;
-  
+
   const inputs = form.querySelectorAll('input, textarea');
-  
+
   inputs.forEach(input => {
     input.addEventListener('blur', () => validateField(input));
     input.addEventListener('input', () => {
@@ -132,9 +132,9 @@ function validateField(field) {
   const value = field.value.trim();
   const isEmail = field.type === 'email';
   const isPhone = field.type === 'tel';
-  
+
   let isValid = false;
-  
+
   if (isEmail) {
     isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   } else if (isPhone) {
@@ -142,7 +142,7 @@ function validateField(field) {
   } else {
     isValid = value.length > 0;
   }
-  
+
   if (isValid) {
     field.classList.remove('error');
     field.classList.add('valid');
@@ -150,7 +150,7 @@ function validateField(field) {
     field.classList.add('error');
     field.classList.remove('valid');
   }
-  
+
   return isValid;
 }
 
@@ -159,7 +159,7 @@ function validateField(field) {
 // ════════════════════════════════════════════════════════
 function initPageTransition() {
   const wrapper = document.querySelector('.page-wrapper');
-  
+
   if (wrapper) {
     wrapper.classList.add('fade-in');
   }
@@ -347,4 +347,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initOffresSelect();
   initServicesSelect();
   initClientsSelect();
+  initThemeToggle();
 });
+// ════════════════════════════════════════════════════════
+// Dark / Light Theme Toggle
+// ════════════════════════════════════════════════════════
+function initThemeToggle() {
+  const STORAGE_KEY = 'at-theme';
+
+  // Apply saved theme immediately
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'light') document.body.classList.add('light-mode');
+
+  const btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+    localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+  });
+}
