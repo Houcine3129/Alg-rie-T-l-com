@@ -355,15 +355,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function initThemeToggle() {
   const STORAGE_KEY = 'at-theme';
 
-  // Apply saved theme immediately
+  // Apply saved theme — dark mode is opt-in, light is default
   const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === 'light') document.body.classList.add('light-mode');
+  if (saved === 'dark') document.body.classList.add('dark-mode');
 
   const btn = document.getElementById('theme-toggle-btn');
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    const isLight = document.body.classList.toggle('light-mode');
-    localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
   });
 }
