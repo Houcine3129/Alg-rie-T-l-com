@@ -61,24 +61,38 @@ function initNavbarScroll() {
 
 // ════════════════════════════════════════════════════════
 // Scroll-Triggered Animations (IntersectionObserver)
-// Elements are visible by default; .in-view adds a subtle
-// fadeUp animation when they scroll into view.
 // ════════════════════════════════════════════════════════
-function initScrollAnimations() {
-  if (!('IntersectionObserver' in window)) return;
+let _scrollObserver = null;
 
-  const observer = new IntersectionObserver((entries) => {
+function getScrollObserver() {
+  if (_scrollObserver) return _scrollObserver;
+  if (!('IntersectionObserver' in window)) return null;
+
+  _scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
+        _scrollObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.card, .stat-box, .service-detail-card, .timeline-item, .faq-item, .pricing-card').forEach(el => {
+  return _scrollObserver;
+}
+
+function initScrollAnimations() {
+  const observer = getScrollObserver();
+  if (!observer) return;
+
+  document.querySelectorAll('.card, .stat-box, .service-detail-card, .timeline-item, .faq-item, .pricing-card, .value-card').forEach(el => {
     observer.observe(el);
   });
+}
+
+function observeNewElements(selector) {
+  const observer = getScrollObserver();
+  if (!observer) return;
+  document.querySelectorAll(selector).forEach(el => observer.observe(el));
 }
 
 // ════════════════════════════════════════════════════════
@@ -172,6 +186,8 @@ async function initPricingCards() {
   const container = document.getElementById('pricing-container');
   if (!container) return;
 
+  const t = (key) => (typeof atT === 'function') ? atT(key) : key;
+
   try {
     const response = await fetch('php/api_offres.php');
     const data = await response.json();
@@ -186,28 +202,70 @@ async function initPricingCards() {
       card.className = 'pricing-card' + (isPopulaire ? ' popular' : '');
 
       card.innerHTML = `
-        ${isPopulaire ? '<div class="pricing-badge">Populaire</div>' : ''}
+        ${isPopulaire ? `<div class="pricing-badge">${t('price.popular')}</div>` : ''}
         <div class="pricing-name">${offre.nom}</div>
         <div class="pricing-description">${offre.description || ''}</div>
         <div class="pricing-price">${prix} DA</div>
-        <div class="pricing-price-period">/mois</div>
+        <div class="pricing-price-period">${t('price.per.month')}</div>
         <div class="pricing-features">
-          <div class="pricing-feature">${offre.debit || '—'} de débit</div>
-          <div class="pricing-feature">Installation gratuite</div>
-          <div class="pricing-feature">Support client 24/7</div>
+          <div class="pricing-feature">${offre.debit || '—'} ${t('price.debit')}</div>
+          <div class="pricing-feature">${t('price.install')}</div>
+          <div class="pricing-feature">${t('price.support')}</div>
         </div>
         <div class="pricing-cta">
-          <a href="contact.html" class="btn ${isPopulaire ? 'btn-primary' : 'btn-outline'}" style="width:100%;justify-content:center;">Choisir</a>
+          <a href="contact.html" class="btn ${isPopulaire ? 'btn-primary' : 'btn-outline'}" style="width:100%;justify-content:center;">${t('price.choose')}</a>
         </div>
       `;
 
       container.appendChild(card);
     });
 
+    observeNewElements('#pricing-container .pricing-card');
+
   } catch (error) {
-    container.innerHTML = '<p style="color:#ff8080;text-align:center;">Erreur de chargement des offres.</p>';
+    container.innerHTML = `<p style="color:#ff8080;text-align:center;">${t('price.error')}</p>`;
     console.error('Erreur chargement offres :', error);
   }
+}
+
+// ════════════════════════════════════════════════════════
+// Slider d'images dynamique depuis l'API
+// ════════════════════════════════════════════════════════
+async function initImageSlider() {
+  const track = document.getElementById('slider-track');
+  if (!track) return;
+
+  // Images de fallback si la BDD est vide
+  const fallbackImages = [
+    { chemin: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&auto=format&fit=crop', titre: 'Réseau Fibre' },
+    { chemin: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop', titre: 'Connectivité' },
+    { chemin: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop', titre: 'Data Center' },
+    { chemin: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&auto=format&fit=crop', titre: 'Technologie' },
+    { chemin: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&auto=format&fit=crop', titre: 'Support Client' },
+    { chemin: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop', titre: 'Infrastructure' },
+  ];
+
+  let images = fallbackImages;
+
+  try {
+    const response = await fetch('php/api_images.php');
+    const data = await response.json();
+    if (data.images && data.images.length > 0) {
+      images = data.images;
+    }
+  } catch (e) {
+    // Utiliser les images de fallback
+  }
+
+  // Dupliquer pour boucle infinie
+  const allImages = [...images, ...images];
+
+  track.innerHTML = allImages.map(img => `
+    <div class="slider-img-card">
+      <img src="${img.chemin}" alt="${img.titre || ''}" loading="lazy">
+      ${img.titre ? `<div class="slider-img-label">${img.titre}</div>` : ''}
+    </div>
+  `).join('');
 }
 
 // ════════════════════════════════════════════════════════
@@ -233,11 +291,13 @@ async function initWilayasSelect() {
   const select = document.querySelector('select[name="wilaya_id"]');
   if (!select) return;
 
+  const t = (key) => (typeof atT === 'function') ? atT(key) : key;
+
   try {
     const response = await fetch('php/api_wilayas.php');
     const data = await response.json();
 
-    select.innerHTML = '<option value="">— Sélectionner votre wilaya —</option>';
+    select.innerHTML = `<option value="">${t('select.wilaya.default')}</option>`;
 
     data.wilayas.forEach(wilaya => {
       const option = document.createElement('option');
@@ -247,7 +307,7 @@ async function initWilayasSelect() {
     });
 
   } catch (error) {
-    select.innerHTML = '<option value="">— Erreur de chargement —</option>';
+    select.innerHTML = `<option value="">${t('select.wilaya.error')}</option>`;
     console.error('Erreur chargement wilayas :', error);
   }
 }
@@ -331,6 +391,20 @@ async function initClientsSelect() {
 }
 
 // ════════════════════════════════════════════════════════
+// Dark / Light Theme Toggle
+// ════════════════════════════════════════════════════════
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+
+  // Dark mode already applied synchronously in <body> — toggle only
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('at-theme', isDark ? 'dark' : 'light');
+  });
+}
+
+// ════════════════════════════════════════════════════════
 // Initialize All
 // ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
@@ -341,6 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initFaqAccordion();
   initFormValidation();
+  initImageSlider();
   initStatsWilayas();
   initPricingCards();
   initWilayasSelect();
@@ -349,21 +424,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initClientsSelect();
   initThemeToggle();
 });
-// ════════════════════════════════════════════════════════
-// Dark / Light Theme Toggle
-// ════════════════════════════════════════════════════════
-function initThemeToggle() {
-  const STORAGE_KEY = 'at-theme';
 
-  // Apply saved theme — dark mode is opt-in, light is default
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === 'dark') document.body.classList.add('dark-mode');
-
-  const btn = document.getElementById('theme-toggle-btn');
-  if (!btn) return;
-
-  btn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
-  });
-}
+// Rechargement du contenu dynamique au changement de langue
+document.addEventListener('at:langchange', () => {
+  initPricingCards();
+  initWilayasSelect();
+  initOffresSelect();
+});

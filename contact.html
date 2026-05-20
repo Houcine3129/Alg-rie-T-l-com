@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Contactez Algérie Télécom — Retrouvez nos coordonnées, horaires et formulaire de contact pour vos demandes.">
+  <meta name="description" content="Contactez Algérie Télécom — Retrouvez nos coordonnées, horaires et formulaire de contact pour vos demandes.">
   <title>Contact — Algérie Télécom</title>
   <link rel="stylesheet" href="style.css">
-  <script>if(localStorage.getItem('at-theme')==='dark'){document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark-mode');});}</script>
 </head>
-
 <body>
+<script>if(localStorage.getItem('at-theme')==='dark')document.body.classList.add('dark-mode');</script>
 
   <!-- ── Navigation ── -->
   <nav class="navbar">
@@ -30,13 +27,15 @@
           <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer de thème">
         <div class="theme-toggle-track">
           <div class="theme-toggle-thumb">
-            <!-- moon (dark mode icon) -->
             <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-            <!-- sun (light mode icon) -->
             <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z"/></svg>
           </div>
         </div>
       </button>
+    <div class="lang-toggle-group" role="group" aria-label="Langue / لغة">
+      <button class="lang-option active" data-lang="fr">FR</button>
+      <button class="lang-option" data-lang="ar">ع</button>
+    </div>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -46,10 +45,9 @@
 
     <!-- ── En-tête ── -->
     <div class="services-hero">
-      <div class="section-label" style="justify-content:center;">Support & Info</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">
-        Contactez-nous</h2>
-      <p style="max-width:480px;margin:0 auto 56px;line-height:1.8;">
+      <div class="section-label" style="justify-content:center;" data-i18n="contact.hero.label">Support & Info</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;" data-i18n="contact.hero.title">Contactez-nous</h2>
+      <p style="max-width:480px;margin:0 auto 56px;line-height:1.8;" data-i18n="contact.hero.desc">
         Notre équipe est disponible pour répondre à toutes vos questions, demandes d'information ou réclamations.
       </p>
     </div>
@@ -59,65 +57,48 @@
 
         <!-- Coordonnées -->
         <div class="contact-info-card">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg> Nos Coordonnées</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="contact.info.title">Nos Coordonnées</span></h3>
 
           <div class="contact-item">
-            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg></div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div class="contact-item-text">
-              <strong>Email</strong>
+              <strong data-i18n="contact.email.label">Email</strong>
               <span>contact@algerietelecom.dz</span>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg></div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
             <div class="contact-item-text">
-              <strong>Téléphone</strong>
+              <strong data-i18n="contact.phone.label">Téléphone</strong>
               <span>+213 21 00 00 00</span>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18M9 21V5l4-4 4 4v16M13 21v-8h-4v8" />
-              </svg></div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M9 21V5l4-4 4 4v16M13 21v-8h-4v8"/></svg></div>
             <div class="contact-item-text">
-              <strong>Adresse</strong>
-              <span>1, Rue Docteur Saïd Houari<br>Alger, Algérie</span>
+              <strong data-i18n="contact.address.label">Adresse</strong>
+              <span data-i18n-html="contact.address.value">1, Rue Docteur Saïd Houari<br>Alger, Algérie</span>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg></div>
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="contact-item-text">
-              <strong>Horaires</strong>
-              <span>Dim – Jeu : 08h00 – 17h00<br>Support technique : 24h/24</span>
+              <strong data-i18n="contact.hours.label">Horaires</strong>
+              <span data-i18n-html="contact.hours.value">Dim – Jeu : 08h00 – 17h00<br>Support technique : 24h/24</span>
             </div>
           </div>
 
           <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--glass-border);">
-            <div class="section-label" style="margin-bottom:10px;">Localisation</div>
+            <div class="section-label" style="margin-bottom:10px;" data-i18n="contact.location.label">Localisation</div>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.1977263834907!2d3.0587102!3d36.7538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f897f8e9d9d9d9d%3A0x0!2sAlg%C3%A9rie%20T%C3%A9l%C3%A9com!5e0!3m2!1sfr!2sdz!4v1234567890"
+              src="https://maps.google.com/maps?q=Alg%C3%A9rie+T%C3%A9l%C3%A9com+Alger+Alg%C3%A9rie&output=embed&z=15"
               style="width:100%;height:260px;border:none;border-radius:var(--radius-md);margin-top:12px;filter:grayscale(30%);"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
               title="Localisation Algérie Télécom">
             </iframe>
           </div>
@@ -125,10 +106,7 @@
 
         <!-- Formulaire -->
         <div class="contact-form-card">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg> Envoyez-nous un Message</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> <span data-i18n="contact.form.title">Envoyez-nous un Message</span></h3>
 
           <!-- Message statut -->
           <div id="form-status"></div>
@@ -138,66 +116,60 @@
             <!-- Honeypot anti-spam (caché) -->
             <input type="text" name="hp_site" style="display:none;" tabindex="-1" autocomplete="off">
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-              <div class="form-group">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name">
-              </div>
-              <div class="form-group">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name">
-              </div>
-            </div>
-
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
             <div class="form-group">
-              <label for="email">Adresse Email</label>
-              <input type="email" id="email" name="email" placeholder="exemple@email.com" autocomplete="email">
+              <label for="prenom" data-i18n="contact.form.prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" data-i18n-ph="contact.ph.prenom" autocomplete="given-name">
             </div>
-
             <div class="form-group">
-              <label for="telephone">Téléphone <span
-                  style="font-weight:400;text-transform:none;letter-spacing:0;">(optionnel)</span></label>
-              <input type="tel" id="telephone" name="telephone" placeholder="+213 XX XX XX XX" autocomplete="tel">
+              <label for="nom" data-i18n="contact.form.nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" data-i18n-ph="contact.ph.nom" autocomplete="family-name">
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="wilaya">Wilaya</label>
-              <select id="wilaya" name="wilaya_id">
-                <option value="">— Chargement des wilayas… —</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contact.form.email">Adresse Email</label>
+            <input type="email" id="email" name="email" placeholder="exemple@email.com" data-i18n-ph="contact.ph.email" autocomplete="email">
+          </div>
 
-            <div class="form-group">
-              <label for="sujet">Objet de la demande</label>
-              <select id="sujet" name="sujet">
-                <option value="">— Sélectionner —</option>
-                <option value="souscription">Souscription</option>
-                <option value="resiliation">Résiliation</option>
-                <option value="incident">Incident technique</option>
-                <option value="facturation">Facturation</option>
-                <option value="entreprise">Solutions entreprise</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="telephone"><span data-i18n="contact.form.tel">Téléphone</span> <span style="font-weight:400;text-transform:none;letter-spacing:0;" data-i18n="contact.form.tel.opt">(optionnel)</span></label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+213 XX XX XX XX" data-i18n-ph="contact.ph.tel" autocomplete="tel">
+          </div>
 
-            <div class="form-group">
-              <label for="message">Votre Message</label>
-              <textarea id="message" name="message"
-                placeholder="Décrivez votre demande ou question (20 caractères minimum)..."></textarea>
-            </div>
+          <div class="form-group">
+            <label for="wilaya" data-i18n="contact.form.wilaya">Wilaya</label>
+            <select id="wilaya" name="wilaya_id">
+              <option value="">— Chargement des wilayas… —</option>
+            </select>
+          </div>
 
-            <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;"
-              onclick="handleSubmit()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22 2 15 22 11 13 2 9 22 2" />
-              </svg> Envoyer le Message
-            </button>
+          <div class="form-group">
+            <label for="sujet" data-i18n="contact.form.sujet">Objet de la demande</label>
+            <select id="sujet" name="sujet">
+              <option value="" data-i18n="contact.opt.default">— Sélectionner —</option>
+              <option value="souscription" data-i18n="contact.opt.souscription">Souscription</option>
+              <option value="resiliation" data-i18n="contact.opt.resiliation">Résiliation</option>
+              <option value="incident" data-i18n="contact.opt.incident">Incident technique</option>
+              <option value="facturation" data-i18n="contact.opt.facturation">Facturation</option>
+              <option value="entreprise" data-i18n="contact.opt.entreprise">Solutions entreprise</option>
+              <option value="autre" data-i18n="contact.opt.autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" data-i18n="contact.form.msg">Votre Message</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre demande ou question (20 caractères minimum)..." data-i18n-ph="contact.ph.msg"></textarea>
+          </div>
+
+          <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;" onclick="handleSubmit()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span data-i18n="contact.form.submit">Envoyer le Message</span>
+          </button>
 
           </form>
 
-          <p style="font-size:0.76rem;color:var(--text-muted);text-align:center;margin-top:12px;">
+          <p style="font-size:0.76rem;color:var(--text-muted);text-align:center;margin-top:12px;" data-i18n="contact.form.guarantee">
             Réponse garantie sous 24 heures ouvrables
           </p>
         </div>
@@ -208,24 +180,11 @@
     <!-- ── Footer ── -->
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-      <div class="footer-social">
-        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-          </svg></a>
-        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg></a>
-        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
-          </svg></a>
-        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-            <circle cx="4" cy="4" r="2" />
-          </svg></a>
+                  <div class="footer-social">
+        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg></a>
+        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
       <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
@@ -241,27 +200,24 @@
 
   </div>
 
-  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15" />
-    </svg></button>
+  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
   <script>
     // ── Afficher message statut (retour de traitement.php) ──
-    (function () {
+    (function() {
       const params = new URLSearchParams(window.location.search);
       const statut = params.get('statut');
       const el = document.getElementById('form-status');
       if (!el) return;
       if (statut === 'succes') {
         el.innerHTML = `<div style="background:rgba(0,160,75,0.15);border:1px solid var(--at-green);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:20px;color:var(--at-green-light);font-size:0.9rem;">
-          ✅ Message envoyé avec succès ! Nous vous répondrons sous 24h ouvrables.
+          ✅ ${(typeof atT === 'function') ? atT('val.success') : 'Message envoyé avec succès !'}
         </div>`;
-        // Nettoyer l'URL sans recharger
         history.replaceState(null, '', 'contact.html');
       } else if (statut === 'erreur') {
         el.innerHTML = `<div style="background:rgba(220,50,50,0.12);border:1px solid rgba(220,50,50,0.4);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:20px;color:#ff8080;font-size:0.9rem;">
-          ❌ Une erreur s'est produite. Veuillez vérifier vos informations et réessayer.
+          ❌ ${(typeof atT === 'function') ? atT('val.error') : 'Une erreur s\'est produite.'}
         </div>`;
         history.replaceState(null, '', 'contact.html');
       }
@@ -269,18 +225,19 @@
 
     // ── Validation avant soumission ──────────────────────────
     function handleSubmit() {
-      const prenom = document.getElementById('prenom').value.trim();
-      const nom = document.getElementById('nom').value.trim();
-      const email = document.getElementById('email').value.trim();
+      const prenom  = document.getElementById('prenom').value.trim();
+      const nom     = document.getElementById('nom').value.trim();
+      const email   = document.getElementById('email').value.trim();
       const message = document.getElementById('message').value.trim();
-      const sujet = document.getElementById('sujet').value;
-      const wilaya = document.getElementById('wilaya').value;
+      const sujet   = document.getElementById('sujet').value;
+      const wilaya  = document.getElementById('wilaya').value;
 
-      if (!prenom || !nom) { showError('Veuillez saisir votre prénom et nom.'); return; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Adresse email invalide.'); return; }
-      if (!wilaya) { showError('Veuillez sélectionner votre wilaya.'); return; }
-      if (!sujet) { showError('Veuillez sélectionner un objet.'); return; }
-      if (message.length < 20) { showError('Le message doit contenir au moins 20 caractères.'); return; }
+      const t = (key, fallback) => (typeof atT === 'function') ? atT(key) : fallback;
+      if (!prenom || !nom)     { showError(t('val.name',    'Veuillez saisir votre prénom et nom.')); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError(t('val.email', 'Adresse email invalide.')); return; }
+      if (!wilaya)             { showError(t('val.wilaya',  'Veuillez sélectionner votre wilaya.')); return; }
+      if (!sujet)              { showError(t('val.sujet',   'Veuillez sélectionner un objet.')); return; }
+      if (message.length < 20) { showError(t('val.message', 'Le message doit contenir au moins 20 caractères.')); return; }
 
       // Tout est valide → soumettre le formulaire PHP
       document.getElementById('contactForm').submit();
@@ -295,5 +252,4 @@
     }
   </script>
 </body>
-
 </html>

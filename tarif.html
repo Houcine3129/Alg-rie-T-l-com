@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Nos tarifs — Découvrez nos offres Internet ADSL, Fibre Standard et Fibre Premium avec les meilleurs prix et services.">
+  <meta name="description" content="Nos tarifs — Découvrez nos offres Internet ADSL, Fibre Standard et Fibre Premium avec les meilleurs prix et services.">
   <title>Tarifs — Algérie Télécom</title>
   <link rel="stylesheet" href="style.css">
-  <script>if(localStorage.getItem('at-theme')==='dark'){document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark-mode');});}</script>
 </head>
-
 <body>
+<script>if(localStorage.getItem('at-theme')==='dark')document.body.classList.add('dark-mode');</script>
 
   <!-- ── Navigation ── -->
   <nav class="navbar">
@@ -30,13 +27,15 @@
           <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer de thème">
         <div class="theme-toggle-track">
           <div class="theme-toggle-thumb">
-            <!-- moon (dark mode icon) -->
             <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-            <!-- sun (light mode icon) -->
             <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z"/></svg>
           </div>
         </div>
       </button>
+    <div class="lang-toggle-group" role="group" aria-label="Langue / لغة">
+      <button class="lang-option active" data-lang="fr">FR</button>
+      <button class="lang-option" data-lang="ar">ع</button>
+    </div>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -46,12 +45,10 @@
 
     <!-- ── En-tête ── -->
     <div class="services-hero">
-      <div class="section-label" style="justify-content:center;">Nos Offres</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">
-        Plans Tarifaires</h2>
-      <p style="max-width:600px;margin:0 auto 48px;line-height:1.8;">
-        Choisissez l'offre qui correspond à vos besoins. Tous nos plans incluent le service client 24/7 et une
-        installation gratuite.
+      <div class="section-label" style="justify-content:center;" data-i18n="tarif.hero.label">Nos Offres</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;" data-i18n="tarif.hero.title">Plans Tarifaires</h2>
+      <p style="max-width:600px;margin:0 auto 48px;line-height:1.8;" data-i18n="tarif.hero.desc">
+        Choisissez l'offre qui correspond à vos besoins. Tous nos plans incluent le service client 24/7 et une installation gratuite.
       </p>
     </div>
 
@@ -70,53 +67,52 @@
         <h2 style="margin-bottom:28px;">Comparaison des Plans</h2>
       </div>
 
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;color:var(--text-secondary);font-size:0.9rem;">
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
           <thead>
-            <tr style="border-bottom:2px solid var(--glass-border);background:rgba(0,160,75,0.04);">
-              <th style="text-align:left;padding:16px;color:var(--white);font-weight:700;">Caractéristiques</th>
-              <th style="text-align:center;padding:16px;color:var(--white);font-weight:700;">ADSL Basic</th>
-              <th style="text-align:center;padding:16px;color:var(--at-green-light);font-weight:700;">Fibre Standard
-              </th>
-              <th style="text-align:center;padding:16px;color:var(--white);font-weight:700;">Fibre Premium</th>
+            <tr>
+              <th data-i18n="tarif.table.feature">Caractéristiques</th>
+              <th data-i18n="tarif.table.adsl">ADSL Basic</th>
+              <th class="col-highlight" data-i18n="tarif.table.standard">Fibre Standard</th>
+              <th data-i18n="tarif.table.premium">Fibre Premium</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid var(--glass-border);">
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Débit descendant</td>
-              <td style="text-align:center;padding:14px;">20 Mbps</td>
-              <td style="text-align:center;padding:14px;color:var(--at-green-light);font-weight:700;">100 Mbps</td>
-              <td style="text-align:center;padding:14px;">1 Gbps</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--glass-border);">
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Installation</td>
-              <td style="text-align:center;padding:14px;">Gratuite</td>
-              <td style="text-align:center;padding:14px;">Gratuite</td>
-              <td style="text-align:center;padding:14px;">Gratuite + Configuration</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--glass-border);">
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Téléphonie</td>
-              <td style="text-align:center;padding:14px;">Local illimité</td>
-              <td style="text-align:center;padding:14px;">National illimité</td>
-              <td style="text-align:center;padding:14px;">International illimité</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--glass-border);">
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Stockage Cloud</td>
-              <td style="text-align:center;padding:14px;">—</td>
-              <td style="text-align:center;padding:14px;">50 GB</td>
-              <td style="text-align:center;padding:14px;">500 GB</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--glass-border);">
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Support Client</td>
-              <td style="text-align:center;padding:14px;">Standard 24/7</td>
-              <td style="text-align:center;padding:14px;">Prioritaire 24/7</td>
-              <td style="text-align:center;padding:14px;">VIP 24/7/365</td>
+            <tr>
+              <td class="feature-label" data-i18n="tarif.table.speed">Débit descendant</td>
+              <td data-i18n="tarif.speed.adsl">20 Mbps</td>
+              <td class="col-highlight" data-i18n="tarif.speed.std">100 Mbps</td>
+              <td data-i18n="tarif.speed.prem">1 Gbps</td>
             </tr>
             <tr>
-              <td style="padding:14px;font-weight:600;color:var(--text-primary);">Prix mensuel</td>
-              <td style="text-align:center;padding:14px;color:var(--white);font-weight:700;">1 299 DA</td>
-              <td style="text-align:center;padding:14px;color:var(--at-green-light);font-weight:700;">2 999 DA</td>
-              <td style="text-align:center;padding:14px;color:var(--white);font-weight:700;">4 999 DA</td>
+              <td class="feature-label" data-i18n="tarif.table.install">Installation</td>
+              <td data-i18n="tarif.install.free">Gratuite</td>
+              <td data-i18n="tarif.install.free">Gratuite</td>
+              <td data-i18n="tarif.install.config">Gratuite + Configuration</td>
+            </tr>
+            <tr>
+              <td class="feature-label" data-i18n="tarif.table.telephony">Téléphonie</td>
+              <td data-i18n="tarif.tel.local">Local illimité</td>
+              <td data-i18n="tarif.tel.national">National illimité</td>
+              <td data-i18n="tarif.tel.intl">International illimité</td>
+            </tr>
+            <tr>
+              <td class="feature-label" data-i18n="tarif.table.cloud">Stockage Cloud</td>
+              <td data-i18n="tarif.cloud.none">—</td>
+              <td data-i18n="tarif.cloud.std">50 GB</td>
+              <td data-i18n="tarif.cloud.prem">500 GB</td>
+            </tr>
+            <tr>
+              <td class="feature-label" data-i18n="tarif.table.support">Support Client</td>
+              <td data-i18n="tarif.support.std">Standard 24/7</td>
+              <td data-i18n="tarif.support.prio">Prioritaire 24/7</td>
+              <td data-i18n="tarif.support.vip">VIP 24/7/365</td>
+            </tr>
+            <tr>
+              <td class="feature-label" data-i18n="tarif.table.price">Prix mensuel</td>
+              <td style="font-weight:700;color:var(--text-primary);" data-i18n="tarif.price.adsl">1 299 DA</td>
+              <td class="col-highlight" data-i18n="tarif.price.std">2 999 DA</td>
+              <td style="font-weight:700;color:var(--text-primary);" data-i18n="tarif.price.prem">4 999 DA</td>
             </tr>
           </tbody>
         </table>
@@ -126,59 +122,38 @@
 
       <!-- ── Conditions ── -->
       <div style="text-align:center;margin-bottom:40px;">
-        <div class="section-label" style="justify-content:center;margin-bottom:12px;">Info</div>
-        <h2 style="margin-bottom:28px;">Conditions Générales</h2>
+        <div class="section-label" style="justify-content:center;margin-bottom:12px;" data-i18n="tarif.conditions.label">Info</div>
+        <h2 style="margin-bottom:28px;" data-i18n="tarif.conditions.title">Conditions Générales</h2>
       </div>
 
-      <div
-        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;">
         <div class="card">
           <div class="card-icon">
-            <!-- assignment / clipboard -->
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
           </div>
-          <h3>Engagement</h3>
-          <p>Tous nos plans sont sans engagement. Vous pouvez modifier ou résilier votre abonnement à tout moment sans
-            frais additionnels.</p>
+          <h3 data-i18n="card.engagement.title">Engagement</h3>
+          <p data-i18n="card.engagement.desc">Tous nos plans sont sans engagement. Vous pouvez modifier ou résilier votre abonnement à tout moment sans frais additionnels.</p>
         </div>
         <div class="card">
           <div class="card-icon">
-            <!-- sync / refresh -->
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z" />
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
           </div>
-          <h3>Flexibilité</h3>
-          <p>Changez de plan à tout moment. Passez à une offre supérieure immédiatement ou réduisez vos services selon
-            vos besoins.</p>
+          <h3 data-i18n="card.flexibilite.title">Flexibilité</h3>
+          <p data-i18n="card.flexibilite.desc">Changez de plan à tout moment. Passez à une offre supérieure immédiatement ou réduisez vos services selon vos besoins.</p>
         </div>
         <div class="card">
           <div class="card-icon">
-            <!-- settings / gear -->
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
           </div>
-          <h3>Disponibilité</h3>
-          <p>Les tarifs et la disponibilité peuvent varier selon votre localité. Vérifiez la couverture de votre zone
-            avant de commander.</p>
+          <h3 data-i18n="card.disponibilite.title">Disponibilité</h3>
+          <p data-i18n="card.disponibilite.desc">Les tarifs et la disponibilité peuvent varier selon votre localité. Vérifiez la couverture de votre zone avant de commander.</p>
         </div>
         <div class="card">
           <div class="card-icon">
-            <!-- local offer / tag / promo -->
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
           </div>
-          <h3>Promotions</h3>
-          <p>Consultez nos offres spéciales et réductions saisonnières. Les nouvelles souscriptions peuvent bénéficier
-            d'avantages exclusifs.</p>
+          <h3 data-i18n="card.promotions.title">Promotions</h3>
+          <p data-i18n="card.promotions.desc">Consultez nos offres spéciales et réductions saisonnières. Les nouvelles souscriptions peuvent bénéficier d'avantages exclusifs.</p>
         </div>
       </div>
 
@@ -186,12 +161,9 @@
 
     <!-- ── CTA ── -->
     <div style="text-align:center;padding:80px 24px;">
-      <h2 style="margin-bottom:24px;">Prêt à Changer d'Offre ?</h2>
+      <h2 style="margin-bottom:24px;" data-i18n="tarif.cta.title">Prêt à Changer d'Offre ?</h2>
       <a href="contact.html" class="btn btn-primary" style="font-size:1rem;padding:15px 36px;">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z" />
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z"/></svg>
         Demander un Devis
       </a>
     </div>
@@ -199,24 +171,11 @@
     <!-- ── Footer ── -->
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-      <div class="footer-social">
-        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-          </svg></a>
-        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg></a>
-        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
-          </svg></a>
-        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-            <circle cx="4" cy="4" r="2" />
-          </svg></a>
+                  <div class="footer-social">
+        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg></a>
+        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
       <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
@@ -233,11 +192,9 @@
   </div>
 
   <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page">
-    <svg viewBox="0 0 24 24">
-      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-    </svg>
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
   </button>
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>

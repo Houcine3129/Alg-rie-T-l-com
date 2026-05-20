@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Questions fréquemment posées — Trouvez les réponses à vos questions sur les services, tarifs et support d'Algérie Télécom.">
+  <meta name="description" content="Questions fréquemment posées — Trouvez les réponses à vos questions sur les services, tarifs et support d'Algérie Télécom.">
   <title>FAQ — Algérie Télécom</title>
   <link rel="stylesheet" href="style.css">
-  <script>if(localStorage.getItem('at-theme')==='dark'){document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark-mode');});}</script>
 </head>
-
 <body>
+<script>if(localStorage.getItem('at-theme')==='dark')document.body.classList.add('dark-mode');</script>
 
   <!-- ── Navigation ── -->
   <nav class="navbar">
@@ -30,13 +27,15 @@
           <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer de thème">
         <div class="theme-toggle-track">
           <div class="theme-toggle-thumb">
-            <!-- moon (dark mode icon) -->
             <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-            <!-- sun (light mode icon) -->
             <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z"/></svg>
           </div>
         </div>
       </button>
+    <div class="lang-toggle-group" role="group" aria-label="Langue / لغة">
+      <button class="lang-option active" data-lang="fr">FR</button>
+      <button class="lang-option" data-lang="ar">ع</button>
+    </div>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -46,13 +45,11 @@
 
     <!-- ── En-tête ── -->
     <div class="services-hero">
-      <div class="section-label" style="justify-content:center;">Questions</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;">
-        Questions Fréquentes</h2>
+      <div class="section-label" style="justify-content:center;" data-i18n="faq.hero.label">Questions</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:16px;" data-i18n="faq.hero.title">Questions Fréquentes</h2>
       <p style="max-width:600px;margin:0 auto 48px;line-height:1.8;">
-        Consultez nos réponses aux questions les plus fréquemment posées. Vous n'avez pas trouvé votre réponse ?
-        <a href="contact.html"
-          style="color:var(--at-green-light);text-decoration:none;border-bottom:1px solid var(--at-green);">Contactez-nous</a>
+        <span data-i18n="faq.hero.desc">Consultez nos réponses aux questions les plus fréquemment posées. Vous n'avez pas trouvé votre réponse ?</span>
+        <a href="contact.html" style="color:var(--at-green-light);text-decoration:none;border-bottom:1px solid var(--at-green);" data-i18n="faq.hero.link">Contactez-nous</a>
       </p>
     </div>
 
@@ -60,202 +57,140 @@
 
       <!-- Internet -->
       <div class="faq-category">
-        <div class="faq-category-label">Internet</div>
+        <div class="faq-category-label" data-i18n="faq.internet.label">Internet</div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Quelle est la différence entre ADSL et Fibre Optique ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.internet.q1">Quelle est la différence entre ADSL et Fibre Optique ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>L'ADSL utilise les lignes téléphoniques existantes et offre des débits jusqu'à 20 Mbps. La Fibre Optique
-              utilise des câbles de fibres optiques et offre des débits beaucoup plus rapides, jusqu'à 1 Gbps, avec une
-              latence plus faible. Optez pour la fibre si vous cherchez une connexion ultra-rapide pour le gaming ou le
-              télétravail exigeant.</p>
+            <p data-i18n="faq.internet.a1">L'ADSL utilise les lignes téléphoniques existantes et offre des débits jusqu'à 20 Mbps. La Fibre Optique utilise des câbles de fibres optiques et offre des débits beaucoup plus rapides, jusqu'à 1 Gbps, avec une latence plus faible. Optez pour la fibre si vous cherchez une connexion ultra-rapide pour le gaming ou le télétravail exigeant.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Comment vérifier si ma zone est couverte par la fibre optique ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.internet.q2">Comment vérifier si ma zone est couverte par la fibre optique ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Vous pouvez vérifier la disponibilité de la fibre optique en visitant notre site ou en appelant le 121.
-              Indiquez simplement votre adresse pour connaître les offres disponibles chez vous. La couverture s'étend
-              progressivement à tous les centres urbains du pays.</p>
+            <p data-i18n="faq.internet.a2">Vous pouvez vérifier la disponibilité de la fibre optique en visitant notre site ou en appelant le 121. Indiquez simplement votre adresse pour connaître les offres disponibles chez vous. La couverture s'étend progressivement à tous les centres urbains du pays.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Quelle est la vitesse de débit garantie ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.internet.q3">Quelle est la vitesse de débit garantie ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Les vitesses indiquées sont des valeurs maximales théoriques. La vitesse réelle dépend de plusieurs
-              facteurs : distance du central, qualité de la ligne, équipements utilisés et charge du réseau. Nos
-              contrats garantissent un minimum de 50% de la vitesse souscrite en conditions normales d'utilisation.</p>
+            <p data-i18n="faq.internet.a3">Les vitesses indiquées sont des valeurs maximales théoriques. La vitesse réelle dépend de plusieurs facteurs : distance du central, qualité de la ligne, équipements utilisés et charge du réseau. Nos contrats garantissent un minimum de 50% de la vitesse souscrite en conditions normales d'utilisation.</p>
           </div>
         </div>
       </div>
 
       <!-- Téléphonie -->
       <div class="faq-category">
-        <div class="faq-category-label">Téléphonie</div>
+        <div class="faq-category-label" data-i18n="faq.tel.label">Téléphonie</div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Comment puis-je activer un service mobile ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.tel.q1">Comment puis-je activer un service mobile ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Vous pouvez activer un service mobile auprès de n'importe quel agent Algérie Télécom en vous présentant
-              avec une pièce d'identité valide. Vous recevrez une carte SIM et pourrez choisir votre forfait parmi nos
-              offres. L'activation est généralement instantanée.</p>
+            <p data-i18n="faq.tel.a1">Vous pouvez activer un service mobile auprès de n'importe quel agent Algérie Télécom en vous présentant avec une pièce d'identité valide. Vous recevrez une carte SIM et pourrez choisir votre forfait parmi nos offres. L'activation est généralement instantanée.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Puis-je conserver mon numéro en changeant d'opérateur ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.tel.q2">Puis-je conserver mon numéro en changeant d'opérateur ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Oui, la portabilité des numéros est disponible en Algérie. Pour conserver votre numéro en changeant
-              d'opérateur, contactez notre service client qui vous guidera dans les démarches administratives. La
-              portabilité est généralement effective sous 24 à 48 heures.</p>
+            <p data-i18n="faq.tel.a2">Oui, la portabilité des numéros est disponible en Algérie. Pour conserver votre numéro en changeant d'opérateur, contactez notre service client qui vous guidera dans les démarches administratives. La portabilité est généralement effective sous 24 à 48 heures.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Proposez-vous l'international ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.tel.q3">Proposez-vous l'international ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Oui, nous proposons des offres d'appels et de SMS internationaux à tarifs avantageux. Consultez nos
-              tarifs d'appel vers les principales destinations ou abonnez-vous à nos forfaits internationaux pour
-              réduire vos frais. Le roaming international est également disponible.</p>
+            <p data-i18n="faq.tel.a3">Oui, nous proposons des offres d'appels et de SMS internationaux à tarifs avantageux. Consultez nos tarifs d'appel vers les principales destinations ou abonnez-vous à nos forfaits internationaux pour réduire vos frais. Le roaming international est également disponible.</p>
           </div>
         </div>
       </div>
 
       <!-- Facturation -->
       <div class="faq-category">
-        <div class="faq-category-label">Facturation</div>
+        <div class="faq-category-label" data-i18n="faq.fact.label">Facturation</div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Quand puis-je recevoir ma facture ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.fact.q1">Quand puis-je recevoir ma facture ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Les factures sont généralement émises entre le 5 et le 15 de chaque mois, selon votre date d'activation
-              ou votre cycle de facturation. Vous pouvez consulter et télécharger vos factures en ligne via votre espace
-              client sur notre site.</p>
+            <p data-i18n="faq.fact.a1">Les factures sont généralement émises entre le 5 et le 15 de chaque mois, selon votre date d'activation ou votre cycle de facturation. Vous pouvez consulter et télécharger vos factures en ligne via votre espace client sur notre site.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Comment puis-je payer ma facture ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.fact.q2">Comment puis-je payer ma facture ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Plusieurs moyens de paiement sont disponibles : prélèvement automatique bancaire, virement, chèque, ou
-              paiement en personne dans nos agences. Vous pouvez également payer via notre plateforme en ligne sécurisée
-              pour plus de commodité.</p>
+            <p data-i18n="faq.fact.a2">Plusieurs moyens de paiement sont disponibles : prélèvement automatique bancaire, virement, chèque, ou paiement en personne dans nos agences. Vous pouvez également payer via notre plateforme en ligne sécurisée pour plus de commodité.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Que faire en cas de facture anormale ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.fact.q3">Que faire en cas de facture anormale ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Si vous constatez une anomalie sur votre facture, contactez immédiatement notre service client au 121 ou
-              via notre site. Nous effectuerons une investigation complète et rectifierons toute erreur identifiée. Vous
-              ne serez jamais facturé pour des services non utilisés.</p>
+            <p data-i18n="faq.fact.a3">Si vous constatez une anomalie sur votre facture, contactez immédiatement notre service client au 121 ou via notre site. Nous effectuerons une investigation complète et rectifierons toute erreur identifiée. Vous ne serez jamais facturé pour des services non utilisés.</p>
           </div>
         </div>
       </div>
 
       <!-- Support Technique -->
       <div class="faq-category">
-        <div class="faq-category-label">Support Technique</div>
+        <div class="faq-category-label" data-i18n="faq.support.label">Support Technique</div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Ma connexion est lente, que faire ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.support.q1">Ma connexion est lente, que faire ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>D'abord, vérifiez que votre routeur est à proximité et bien ventilé. Redémarrez votre modem et routeur.
-              Si le problème persiste, contactez notre support au 121 ou en ligne. Nous effectuerons un diagnostic à
-              distance et enverrons un technicien si nécessaire, gratuitement si c'est un problème réseau.</p>
+            <p data-i18n="faq.support.a1">D'abord, vérifiez que votre routeur est à proximité et bien ventilé. Redémarrez votre modem et routeur. Si le problème persiste, contactez notre support au 121 ou en ligne. Nous effectuerons un diagnostic à distance et enverrons un technicien si nécessaire, gratuitement si c'est un problème réseau.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Comment réinitialiser mon mot de passe WiFi ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.support.q2">Comment réinitialiser mon mot de passe WiFi ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Consultez le manuel de votre routeur ou accédez à l'interface d'administration (généralement
-              192.168.1.1). Le nom d'utilisateur et mot de passe par défaut se trouvent sur l'étiquette du routeur. Si
-              vous avez oublié votre mot de passe, réinitialisez l'appareil en appuyant sur le bouton reset pendant 10
-              secondes.</p>
+            <p data-i18n="faq.support.a2">Consultez le manuel de votre routeur ou accédez à l'interface d'administration (généralement 192.168.1.1). Le nom d'utilisateur et mot de passe par défaut se trouvent sur l'étiquette du routeur. Si vous avez oublié votre mot de passe, réinitialisez l'appareil en appuyant sur le bouton reset pendant 10 secondes.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-header">
-            <span>Quels sont les horaires du support technique ?</span>
-            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></div>
+            <span data-i18n="faq.support.q3">Quels sont les horaires du support technique ?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
           </div>
           <div class="faq-content">
-            <p>Notre support client est disponible 24/7/365. Vous pouvez nous contacter par téléphone au 121 (gratuit
-              depuis une ligne Algérie Télécom), par email, par chat en ligne, ou en vous rendant dans nos agences. Pour
-              les urgences, préférez l'appel téléphonique.</p>
+            <p data-i18n="faq.support.a3">Notre support client est disponible 24/7/365. Vous pouvez nous contacter par téléphone au 121 (gratuit depuis une ligne Algérie Télécom), par email, par chat en ligne, ou en vous rendant dans nos agences. Pour les urgences, préférez l'appel téléphonique.</p>
           </div>
         </div>
       </div>
@@ -264,37 +199,21 @@
 
     <!-- ── CTA ── -->
     <div style="text-align:center;padding:80px 24px;">
-      <h2 style="margin-bottom:24px;">Votre Question n'est pas Listée ?</h2>
+      <h2 style="margin-bottom:24px;" data-i18n="faq.cta.title">Votre Question n'est pas Listée ?</h2>
       <a href="contact.html" class="btn btn-primary" style="font-size:1rem;padding:15px 36px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-          <polyline points="22,6 12,13 2,6" />
-        </svg> Nous Contacter
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span data-i18n="faq.cta.btn">Nous Contacter</span>
       </a>
     </div>
 
     <!-- ── Footer ── -->
     <footer class="footer">
       <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-      <div class="footer-social">
-        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-          </svg></a>
-        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg></a>
-        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
-          </svg></a>
-        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-            <circle cx="4" cy="4" r="2" />
-          </svg></a>
+                  <div class="footer-social">
+        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg></a>
+        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
       <nav class="footer-nav-links" aria-label="Pied de page">
         <a href="index.html">Accueil</a>
@@ -310,11 +229,8 @@
 
   </div>
 
-  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15" />
-    </svg></button>
+  <button class="scroll-to-top" title="Retour au sommet" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>
