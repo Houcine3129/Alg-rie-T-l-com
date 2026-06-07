@@ -61,38 +61,61 @@ function initNavbarScroll() {
 
 // ════════════════════════════════════════════════════════
 // Scroll-Triggered Animations (IntersectionObserver)
+// Elements are visible by default; .in-view adds a subtle
+// fadeUp animation when they scroll into view.
 // ════════════════════════════════════════════════════════
-let _scrollObserver = null;
+let scrollObserver = null;
 
-function getScrollObserver() {
-  if (_scrollObserver) return _scrollObserver;
-  if (!('IntersectionObserver' in window)) return null;
+function initScrollAnimations() {
+  if (!('IntersectionObserver' in window)) return;
 
-  _scrollObserver = new IntersectionObserver((entries) => {
+  scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-        _scrollObserver.unobserve(entry.target);
+        scrollObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
-  return _scrollObserver;
-}
-
-function initScrollAnimations() {
-  const observer = getScrollObserver();
-  if (!observer) return;
-
-  document.querySelectorAll('.card, .stat-box, .service-detail-card, .timeline-item, .faq-item, .pricing-card, .value-card').forEach(el => {
-    observer.observe(el);
+  document.querySelectorAll('.card, .stat-box, .service-detail-card, .timeline-item, .faq-item, .pricing-card').forEach(el => {
+    scrollObserver.observe(el);
   });
 }
 
-function observeNewElements(selector) {
-  const observer = getScrollObserver();
-  if (!observer) return;
-  document.querySelectorAll(selector).forEach(el => observer.observe(el));
+// ════════════════════════════════════════════════════════
+// Slider images animation (simple auto-scroll)
+// ════════════════════════════════════════════════════════
+async function initSlider() {
+  console.log('initSlider CALLED');
+  const track = document.getElementById('slider-track');
+  console.log('track found:', !!track);
+  if (!track) return;
+
+  try {
+    const response = await fetch('PHP/api_slider.php');
+    const data = await response.json();
+
+    track.innerHTML = '';
+    const cards = [];
+
+    data.images.forEach(img => {
+      const card = document.createElement('div');
+      card.className = 'slider-img-card';
+      card.innerHTML = `
+        <img src="${img.image}" alt="${img.nom}">
+        <div class="slider-img-label">${img.description || img.nom}</div>
+      `;
+      cards.push(card);
+    });
+
+    // Dupliquer pour l'effet de défilement infini (translateX(-50%))
+    [...cards, ...cards].forEach(c => track.appendChild(c.cloneNode(true)));
+
+  } catch (error) {
+    track.innerHTML = '<div class="slider-img-card no-img">Erreur de chargement</div>';
+    console.error('Erreur slider :', error);
+  }
 }
 
 // ════════════════════════════════════════════════════════
@@ -186,11 +209,17 @@ async function initPricingCards() {
   const container = document.getElementById('pricing-container');
   if (!container) return;
 
-  const t = (key) => (typeof atT === 'function') ? atT(key) : key;
-
   try {
     const response = await fetch('php/api_offres.php');
+    if (!response.ok) {
+      const errBody = await response.json().catch(() => ({}));
+      throw new Error(errBody.error || `HTTP ${response.status}`);
+    }
     const data = await response.json();
+
+    if (!data || !Array.isArray(data.offres)) {
+      throw new Error('Format de réponse invalide');
+    }
 
     container.innerHTML = '';
 
@@ -202,70 +231,29 @@ async function initPricingCards() {
       card.className = 'pricing-card' + (isPopulaire ? ' popular' : '');
 
       card.innerHTML = `
-        ${isPopulaire ? `<div class="pricing-badge">${t('price.popular')}</div>` : ''}
+        ${isPopulaire ? '<div class="pricing-badge">Populaire</div>' : ''}
         <div class="pricing-name">${offre.nom}</div>
         <div class="pricing-description">${offre.description || ''}</div>
         <div class="pricing-price">${prix} DA</div>
-        <div class="pricing-price-period">${t('price.per.month')}</div>
+        <div class="pricing-price-period">/mois</div>
         <div class="pricing-features">
-          <div class="pricing-feature">${offre.debit || '—'} ${t('price.debit')}</div>
-          <div class="pricing-feature">${t('price.install')}</div>
-          <div class="pricing-feature">${t('price.support')}</div>
+          <div class="pricing-feature">${offre.debit || '—'} de débit</div>
+          <div class="pricing-feature">Installation gratuite</div>
+          <div class="pricing-feature">Support client 24/7</div>
         </div>
         <div class="pricing-cta">
-          <a href="contact.html" class="btn ${isPopulaire ? 'btn-primary' : 'btn-outline'}" style="width:100%;justify-content:center;">${t('price.choose')}</a>
+          <a href="contact.html" class="btn ${isPopulaire ? 'btn-primary' : 'btn-outline'}" style="width:100%;justify-content:center;">Choisir</a>
         </div>
       `;
 
       container.appendChild(card);
+      if (scrollObserver) scrollObserver.observe(card);
     });
 
-    observeNewElements('#pricing-container .pricing-card');
-
   } catch (error) {
-    container.innerHTML = `<p style="color:#ff8080;text-align:center;">${t('price.error')}</p>`;
+    container.innerHTML = '<p style="color:#ff8080;text-align:center;">Erreur de chargement des offres : ' + error.message + '</p>';
     console.error('Erreur chargement offres :', error);
   }
-}
-
-// ════════════════════════════════════════════════════════
-// Slider d'images dynamique depuis l'API
-// ════════════════════════════════════════════════════════
-async function initImageSlider() {
-  const track = document.getElementById('slider-track');
-  if (!track) return;
-
-  // Images de fallback si la BDD est vide
-  const fallbackImages = [
-    { chemin: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&auto=format&fit=crop', titre: 'Réseau Fibre' },
-    { chemin: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop', titre: 'Connectivité' },
-    { chemin: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop', titre: 'Data Center' },
-    { chemin: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&auto=format&fit=crop', titre: 'Technologie' },
-    { chemin: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&auto=format&fit=crop', titre: 'Support Client' },
-    { chemin: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop', titre: 'Infrastructure' },
-  ];
-
-  let images = fallbackImages;
-
-  try {
-    const response = await fetch('php/api_images.php');
-    const data = await response.json();
-    if (data.images && data.images.length > 0) {
-      images = data.images;
-    }
-  } catch (e) {
-    // Utiliser les images de fallback
-  }
-
-  // Dupliquer pour boucle infinie
-  const allImages = [...images, ...images];
-
-  track.innerHTML = allImages.map(img => `
-    <div class="slider-img-card">
-      <img src="${img.chemin}" alt="${img.titre || ''}" loading="lazy">
-      ${img.titre ? `<div class="slider-img-label">${img.titre}</div>` : ''}
-    </div>
-  `).join('');
 }
 
 // ════════════════════════════════════════════════════════
@@ -291,13 +279,11 @@ async function initWilayasSelect() {
   const select = document.querySelector('select[name="wilaya_id"]');
   if (!select) return;
 
-  const t = (key) => (typeof atT === 'function') ? atT(key) : key;
-
   try {
     const response = await fetch('php/api_wilayas.php');
     const data = await response.json();
 
-    select.innerHTML = `<option value="">${t('select.wilaya.default')}</option>`;
+    select.innerHTML = '<option value="">— Sélectionner votre wilaya —</option>';
 
     data.wilayas.forEach(wilaya => {
       const option = document.createElement('option');
@@ -307,7 +293,7 @@ async function initWilayasSelect() {
     });
 
   } catch (error) {
-    select.innerHTML = `<option value="">${t('select.wilaya.error')}</option>`;
+    select.innerHTML = '<option value="">— Erreur de chargement —</option>';
     console.error('Erreur chargement wilayas :', error);
   }
 }
@@ -391,20 +377,6 @@ async function initClientsSelect() {
 }
 
 // ════════════════════════════════════════════════════════
-// Dark / Light Theme Toggle
-// ════════════════════════════════════════════════════════
-function initThemeToggle() {
-  const btn = document.getElementById('theme-toggle-btn');
-  if (!btn) return;
-
-  // Dark mode already applied synchronously in <body> — toggle only
-  btn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem('at-theme', isDark ? 'dark' : 'light');
-  });
-}
-
-// ════════════════════════════════════════════════════════
 // Initialize All
 // ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
@@ -415,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initFaqAccordion();
   initFormValidation();
-  initImageSlider();
+  initSlider();
   initStatsWilayas();
   initPricingCards();
   initWilayasSelect();
@@ -423,11 +395,236 @@ document.addEventListener('DOMContentLoaded', () => {
   initServicesSelect();
   initClientsSelect();
   initThemeToggle();
+  initLangSwitcher();
 });
+// ════════════════════════════════════════════════════════
+// Dark / Light Theme Toggle
+// ════════════════════════════════════════════════════════
+function initThemeToggle() {
+  const STORAGE_KEY = 'at-theme';
 
-// Rechargement du contenu dynamique au changement de langue
-document.addEventListener('at:langchange', () => {
-  initPricingCards();
-  initWilayasSelect();
-  initOffresSelect();
-});
+  // Apply saved theme — dark mode is opt-in, light is default
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'dark') document.body.classList.add('dark-mode');
+
+  const btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+  });
+}
+
+// ════════════════════════════════════════════════════════
+// Language Switcher (FR / AR)
+// ════════════════════════════════════════════════════════
+
+// Arabic translations map
+const AR_TRANSLATIONS = {
+  // Nav links
+  'Accueil': 'الرئيسية',
+  'Services': 'الخدمات',
+  'Tarifs': 'التعريفات',
+  'À Propos': 'من نحن',
+  'FAQ': 'الأسئلة الشائعة',
+  'Contact': 'اتصل بنا',
+
+  // Hero
+  'Bienvenue chez': 'مرحباً بكم في',
+  'Nos Services': 'خدماتنا',
+  'Nous Contacter': 'اتصل بنا',
+
+  // Stats
+  'Abonnés': 'مشترك',
+  'Wilayas couvertes': 'ولاية مغطاة',
+  'Fibre Optique': 'الألياف البصرية',
+  'Support Client': 'دعم العملاء',
+  'Couverture nationale': 'تغطية وطنية',
+  'Débit max fibre': 'أقصى سرعة ألياف',
+  'Disponibilité réseau': 'توفر الشبكة',
+  'Clients Actifs': 'عميل نشط',
+  'Satisfaction Client': 'رضا العملاء',
+  'Wilayas Couvertes': 'ولاية مغطاة',
+  'Emplois Créés': 'وظيفة تم إنشاؤها',
+
+  // Section labels
+  'À Propos': 'من نحن',
+  'Nos Offres': 'عروضنا',
+  'Catalogue Complet': 'الكتالوج الكامل',
+  'Internet': 'الإنترنت',
+  'Téléphonie': 'الهاتف',
+  'Entreprises': 'الشركات',
+  'Notre Histoire': 'تاريخنا',
+  'Fondamentaux': 'القيم الأساسية',
+  'Jalons': 'المحطات',
+  'Chiffres': 'الأرقام',
+  'Support & Info': 'الدعم والمعلومات',
+  'Détail': 'التفاصيل',
+  'Info': 'معلومات',
+
+  // Headings
+  'Le Pionnier des\nTélécommunications': 'رائد\nالاتصالات',
+  'Des Solutions pour\nChaque Besoin': 'حلول لكل\nاحتياج',
+  'Nos Services': 'خدماتنا',
+  'Plans Tarifaires': 'خطط الأسعار',
+  'À Propos d\'Algérie Télécom': 'حول الجزائر للاتصالات',
+  'Nos Valeurs Fondamentales': 'قيمنا الأساسية',
+  'Notre Parcours': 'مسيرتنا',
+  'Nos Statistiques': 'إحصائياتنا',
+  'Comparaison des Plans': 'مقارنة الخطط',
+  'Conditions Générales': 'الشروط العامة',
+  'Contactez-nous': 'اتصل بنا',
+  'Connectivité Haut Débit': 'اتصال عالي السرعة',
+  'Communications Voix': 'اتصالات الصوت',
+  'Solutions Professionnelles': 'حلول احترافية',
+
+  // Cards
+  'Internet Haut Débit': 'إنترنت عالي السرعة',
+  'Services Mobiles': 'الخدمات المحمولة',
+  'Solutions Entreprise': 'حلول الأعمال',
+  'ADSL': 'ADSL',
+  'Téléphonie Fixe': 'الهاتف الثابت',
+  'Notre Mission': 'مهمتنا',
+  'Notre Vision': 'رؤيتنا',
+  'Innovation': 'الابتكار',
+  'Connectivité': 'الاتصال',
+  'Fiabilité': 'الموثوقية',
+  'Service Client': 'خدمة العملاء',
+
+  // Buttons / CTA
+  'Demander un devis': 'طلب عرض سعر',
+  'Demander un Devis': 'طلب عرض سعر',
+  'Prêt à Nous Rejoindre ?': 'هل أنت مستعد للانضمام إلينا؟',
+  'Prêt à Changer d\'Offre ?': 'هل أنت مستعد لتغيير العرض؟',
+
+  // Footer
+  'Tous droits réservés': 'جميع الحقوق محفوظة',
+  'Projet de fin d\'études — Informatique · Bases de Données': 'مشروع التخرج — إعلام آلي · قواعد البيانات',
+
+  // Contact
+  'Nos Coordonnées': 'معلومات الاتصال',
+  'Envoyez-nous un Message': 'أرسل لنا رسالة',
+  'Prénom': 'الاسم الأول',
+  'Nom': 'اللقب',
+  'Adresse Email': 'البريد الإلكتروني',
+  'Téléphone': 'الهاتف',
+  'Wilaya': 'الولاية',
+  'Objet de la demande': 'موضوع الطلب',
+  'Votre Message': 'رسالتك',
+  'Envoyer le Message': 'إرسال الرسالة',
+  'Réponse garantie sous 24 heures ouvrables': 'رد مضمون خلال 24 ساعة عمل',
+  'Email': 'البريد الإلكتروني',
+  'Adresse': 'العنوان',
+  'Horaires': 'أوقات العمل',
+  'Localisation': 'الموقع',
+};
+
+const FR_TRANSLATIONS = {};
+Object.entries(AR_TRANSLATIONS).forEach(([fr, ar]) => { FR_TRANSLATIONS[ar] = fr; });
+
+function applyLanguage(lang) {
+  const isAr = lang === 'ar';
+  document.documentElement.lang = lang;
+  document.body.dir = isAr ? 'rtl' : 'ltr';
+
+  // Translate all [data-fr] tagged elements
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    el.textContent = isAr ? (AR_TRANSLATIONS[el.dataset.fr] || el.dataset.fr) : el.dataset.fr;
+  });
+
+  localStorage.setItem('at-lang', lang);
+}
+
+function initLangSwitcher() {
+  const switcher = document.getElementById('lang-switcher');
+  const btn = document.getElementById('lang-btn');
+  const dropdown = document.getElementById('lang-dropdown');
+  const currentLabel = document.getElementById('lang-current');
+
+  if (!switcher || !btn || !dropdown) return;
+
+  // Restore saved language
+  const saved = localStorage.getItem('at-lang') || 'fr';
+  if (saved === 'ar') {
+    applyLanguage('ar');
+    currentLabel.textContent = 'AR';
+    dropdown.querySelector('[data-lang="fr"]').classList.remove('active');
+    dropdown.querySelector('[data-lang="ar"]').classList.add('active');
+  }
+
+  // Toggle dropdown
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = switcher.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Option click
+  dropdown.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const lang = opt.dataset.lang;
+      const label = opt.dataset.label;
+
+      // Update active state
+      dropdown.querySelectorAll('.lang-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      currentLabel.textContent = label;
+
+      applyLanguage(lang);
+
+      // Close dropdown
+      switcher.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    });
+  });
+// ════════════════════════════════════════════════════════
+// Language Switcher (FR ↔ AR)
+// ════════════════════════════════════════════════════════
+function initLangSwitcher() {
+  const btn = document.getElementById('langBtn');
+  if (!btn) return;
+
+  const html = document.documentElement;
+
+  // Restore saved language on page load
+  const saved = localStorage.getItem('lang') || 'fr';
+  applyLang(saved);
+
+  btn.addEventListener('click', () => {
+    const current = html.getAttribute('lang') === 'ar' ? 'ar' : 'fr';
+    const next = current === 'fr' ? 'ar' : 'fr';
+    applyLang(next);
+    localStorage.setItem('lang', next);
+  });
+
+  function applyLang(lang) {
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    btn.classList.toggle('is-ar', lang === 'ar');
+
+    // Swap all elements that have data-fr and data-ar attributes
+    document.querySelectorAll('[data-fr]').forEach(el => {
+      el.textContent = lang === 'ar'
+        ? (el.dataset.ar || el.textContent)
+        : (el.dataset.fr || el.textContent);
+    });
+  }
+}
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!switcher.contains(e.target)) {
+      switcher.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      switcher.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+      btn.focus();
+    }
+  });
+}
