@@ -392,27 +392,23 @@ prend 80% du rond blanc */
     }
 
     .contenu-defilant {
-      display: inline-block;
-      padding-left: 100%;
-      animation: defilement 20s linear infinite;
+      display: flex;
       white-space: nowrap;
-      position: relative;
-      z-index: 1;
+      animation: defilement 20s linear infinite;
     }
 
     .contenu-defilant:hover {
       animation-play-state: paused;
-      /* Pause quand on passe la souris */
+    }
+
+    .contenu-defilant span {
+      flex-shrink: 0;
+      padding-right: 2rem;
     }
 
     @keyframes defilement {
-      0% {
-        transform: translate(0, 0);
-      }
-
-      100% {
-        transform: translate(-100%, 0);
-      }
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 
@@ -495,19 +491,19 @@ prend 80% du rond blanc */
     </div>
   </section>
 
-  <div class="flash-info" style="border-radius: 50px;" title="🚨Alerte!🚨">
-    <span class="flash-alert-label">Alerte</span>
+  <div class="flash-info" style="border-radius: 50px;" data-i18n-title="flash.alert.title" title="🚨Alerte!🚨">
+    <span class="flash-alert-label" data-i18n="flash.alert.label">Alerte</span>
     <div class="contenu-defilant">
-      📢 PROMOTION : Profitez de -20% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de
-      vous._________________|________________ à l'occasion de la fête de l'indépendance, profitez de -15% sur nos offres
-      fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous.
+      <span data-i18n="flash.alert.text">📢 PROMOTION : Profitez de -20% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous._________________|________________ à l'occasion de la fête de l'indépendance, profitez de -15% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous.</span>
+      <span aria-hidden="true" data-i18n="flash.alert.text">📢 PROMOTION : Profitez de -20% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous._________________|________________ à l'occasion de la fête de l'indépendance, profitez de -15% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous.</span>
     </div>
   </div>
+
 
   <!-- ── Stats ── -->
   <div class="stats-row">
     <div class="stat-box">
-      <span class="stat-number">15M+</span>
+      <span class="stat-number" data-i18n="stat.N_abonnes">15M+</span>
       <span class="stat-label" data-i18n="stat.abonnes">Abonnés</span>
     </div>
     <div class="stat-box">
@@ -515,11 +511,11 @@ prend 80% du rond blanc */
       <span class="stat-label" data-i18n="stat.wilayas">Wilayas couvertes</span>
     </div>
     <div class="stat-box">
-      <span class="stat-number">1 Gbps</span>
+      <span class="stat-number" data-i18n="stat.debit">1 Gbps</span>
       <span class="stat-label" data-i18n="stat.fibre">Fibre Optique</span>
     </div>
     <div class="stat-box">
-      <span class="stat-number">24/7</span>
+      <span class="stat-number" data-i18n="stat.support_num">24/7</span>
       <span class="stat-label" data-i18n="stat.support">Support Client</span>
     </div>
   </div>
@@ -781,8 +777,36 @@ prend 80% du rond blanc */
     userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleSend(); });
   </script>
 
-  <script src="i18j.js"></script>
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
-</body>
 
+  <script>
+  (function() {
+    function setFlashInfo(lang) {
+      var t = window.AT_TRANSLATIONS?.[lang];
+      if (!t) return;
+      var label = document.querySelector('.flash-alert-label');
+      var text = document.querySelector('.contenu-defilant span');
+      var info = document.querySelector('.flash-info');
+      if (label) label.textContent = t['flash.alert.label'] || 'Alerte';
+      if (text) text.textContent = t['flash.alert.text'] || '';
+      if (info) info.title = t['flash.alert.title'] || 'Alerte';
+    }
+
+    var currentLang = localStorage.getItem('at-lang') || 'fr';
+    setFlashInfo(currentLang);
+
+    document.querySelectorAll('.lang-option').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var lang = this.getAttribute('data-lang');
+        setFlashInfo(lang);
+      });
+    });
+
+    document.addEventListener('at:langchange', function(e) {
+      setFlashInfo(e.detail.lang);
+    });
+  })();
+  </script>
+</body>
 </html>
