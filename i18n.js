@@ -339,6 +339,7 @@ const AT_TRANSLATIONS = {
     'services.hero.title': 'خدماتنا',
     'services.hero.desc':  'اكتشف مجموعتنا الكاملة من حلول الاتصالات المصممة لتلبية احتياجات الأفراد والمهنيين والشركات.',
     'services.stat.coverage': 'تغطية وطنية',
+    'services.stat.debit.label':    '1 جيجابت/ث',
     'services.stat.debit':    'أقصى سرعة للألياف',
     'services.stat.dispo':    'توافر الشبكة',
     'services.internet.label':  'الإنترنت',
