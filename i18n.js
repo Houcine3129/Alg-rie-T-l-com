@@ -26,10 +26,13 @@ const AT_TRANSLATIONS = {
     'hero.btn.contact':     'Nous Contacter',
 
     // ── Index — Stats ───────────────────────────────────
+    'stat.N_abonnes': '+15M',
     'stat.abonnes': 'Abonnés',
     'stat.wilayas': 'Wilayas couvertes',
+    'stat.debit':    '1 Gbps',
     'stat.fibre':   'Fibre Optique',
     'stat.support': 'Support Client',
+    'stat.support_num': '24/7',
 
     // ── Index — Section À propos ────────────────────────
     'section.about.label': 'À Propos',
@@ -271,6 +274,11 @@ const AT_TRANSLATIONS = {
     'select.service.default':'— Sélectionner un service —',
     'select.client.default': '— Sélectionner un client —',
     'slider.loading':        'Chargement…',
+
+    // ── Flash info ───────────────────────────────────────
+    'flash.alert.label': 'Alerte',
+    'flash.alert.text':  '📢 PROMOTION : Profitez de -20% sur nos offres fibre jusqu\'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous._________________|________________ À l\'occasion de la fête de l\'indépendance, profitez de -15% sur nos offres fibre jusqu\'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous.',
+    'flash.alert.title': '🚨Alerte!🚨',
   },
 
   // ════════════════════════════════════════════════════
@@ -296,10 +304,13 @@ const AT_TRANSLATIONS = {
     'hero.btn.contact':     'اتصل بنا',
 
     // ── Index — Stats ───────────────────────────────────
+    'stat.N_abonnes': '+15 مليون',
     'stat.abonnes': 'مشترك',
     'stat.wilayas': 'ولاية مغطاة',
+    'stat.debit':    '1 جيجابت/ث',
     'stat.fibre':   'ألياف ضوئية',
     'stat.support': 'دعم العملاء',
+    'stat.support_num': '24/7',
 
     // ── Index — Section À propos ────────────────────────
     'section.about.label': 'حولنا',
@@ -541,6 +552,11 @@ const AT_TRANSLATIONS = {
     'select.service.default':'— اختر خدمة —',
     'select.client.default': '— اختر عميلًا —',
     'slider.loading':        'جارٍ التحميل…',
+
+    // ── Flash info ───────────────────────────────────────
+    'flash.alert.label': 'تنبيه',
+    'flash.alert.text':  '📢 عرض ترويجي: استفد من خصم -20% على عروض الألياف البصرية حتى نهاية الشهر! | ⚡ اتصالات الجزائر: دائما أقرب._________________|________________ بمناسبة عيد الاستقلال، استفد من خصم -15% على عروض الألياف البصرية حتى نهاية الشهر! | ⚡ اتصالات الجزائر: دائما أقرب.',
+    'flash.alert.title': '🚨تنبيه!🚨',
   }
 };
 
@@ -578,6 +594,12 @@ function atApplyLang(lang) {
     if (t[key] !== undefined) el.placeholder = t[key];
   });
 
+  // Title attributes
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (t[key] !== undefined) el.title = t[key];
+  });
+
   // Liens de navigation (par href — sans modifier le HTML)
   const navMap = {
     'index.html':    'nav.home',
@@ -605,6 +627,14 @@ function atApplyLang(lang) {
 
   // Persister
   localStorage.setItem('at-lang', lang);
+
+  // Flash info explicite (évite les soucis d'animation avec textContent)
+  var flashLabel = document.querySelector('.flash-alert-label');
+  var flashText = document.querySelector('.contenu-defilant span');
+  var flashInfo = document.querySelector('.flash-info');
+  if (flashLabel && t['flash.alert.label'] !== undefined) flashLabel.textContent = t['flash.alert.label'];
+  if (flashText && t['flash.alert.text'] !== undefined) flashText.textContent = t['flash.alert.text'];
+  if (flashInfo && t['flash.alert.title'] !== undefined) flashInfo.title = t['flash.alert.title'];
 
   // Émettre un événement pour que main.js puisse rafraîchir le contenu dynamique
   document.dispatchEvent(new CustomEvent('at:langchange', { detail: { lang } }));
