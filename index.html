@@ -8,10 +8,419 @@
     content="Algérie Télécom — Le premier opérateur national de télécommunications connectant l'Algérie avec des solutions haut débit, mobiles et d'entreprise.">
   <title>Algérie Télécom — Accueil</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Chat Widget ─────────────────────────────────────────── */
+
+    /* Bouton toggle (bas-gauche, juste au-dessus du scroll-to-top) */
+    .chat-toggle-btn {
+      position: fixed;
+      bottom: 84px;
+      /* au-dessus du scroll-to-top (~52px + gap) */
+      left: px;
+      z-index: 1100;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--at-green);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px var(--at-green-glow), var(--shadow-md);
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+    }
+
+    .chat-toggle-btn:hover {
+      background: var(--at-green-light);
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px var(--at-green-glow);
+    }
+
+    .chat-toggle-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: opacity var(--t), transform var(--t);
+    }
+
+    /* icône "fermer" cachée par défaut */
+    .chat-toggle-btn .icon-close {
+      display: none;
+    }
+
+    .chat-toggle-btn.is-open .icon-chat {
+      display: none;
+    }
+
+    .chat-toggle-btn.is-open .icon-close {
+      display: block;
+    }
+
+    /* Bulle de notification (1 message non lu) */
+    .chat-toggle-btn .chat-badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #e53935;
+      border: 2px solid var(--bg-base);
+      display: block;
+      transition: opacity var(--t);
+    }
+
+    .chat-toggle-btn.is-open .chat-badge {
+      display: none;
+    }
+
+    /* Fenêtre de chat */
+    .chat-container {
+      position: fixed;
+      bottom: 148px;
+      /* juste au-dessus du bouton toggle */
+      left: 24px;
+      z-index: 1099;
+      width: min(360px, calc(100vw - 48px));
+      height: 480px;
+      background: var(--bg-card);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+
+      /* Animation ouverture/fermeture */
+      transform-origin: bottom left;
+      transform: scale(0.85) translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chat-container.is-open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* En-tête */
+    .chat-header {
+      background: linear-gradient(135deg, var(--at-green) 0%, var(--at-green-dark) 100%);
+      color: #fff;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.01em;
+      flex-shrink: 0;
+    }
+
+    .mini-logo {
+      width: 45px;
+      height: 45px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      /* Empêche
+I 'écrasement */
+    }
+
+    .mini-logo img {
+      width: 80%;
+      /* L'image
+prend 80% du rond blanc */
+      height: auto;
+      object-fit: contain;
+    }
+
+    .chat-header-info {
+      flex: 1;
+    }
+
+    .chat-header-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .chat-header-status {
+      font-size: 0.73rem;
+      font-weight: 400;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .chat-header-status::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      display: inline-block;
+    }
+
+    /* Zone messages */
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg-base);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* Bulles */
+    .message {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      word-break: break-word;
+      animation: msgIn 0.2s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.bot {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    .message.user {
+      background: var(--at-green);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 8px var(--at-green-glow);
+    }
+
+    .message.rtl {
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* Indicateur "en train d'écrire…" */
+    .typing-indicator {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .typing-indicator span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--at-green);
+      opacity: 0.4;
+      animation: typing 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+
+      0%,
+      80%,
+      100% {
+        opacity: 0.25;
+        transform: scale(0.8);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Zone de saisie */
+    .chat-input-area {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--bg-card);
+      flex-shrink: 0;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 10px 16px;
+      outline: none;
+      font-size: 0.875rem;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      transition: border-color var(--t), background var(--t);
+    }
+
+    .chat-input-area input:focus {
+      border-color: var(--at-green);
+      background: var(--bg-card);
+    }
+
+    .chat-input-area input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .chat-input-area button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--at-green);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--t), transform var(--t);
+    }
+
+    .chat-input-area button:hover {
+      background: var(--at-green-light);
+      transform: scale(1.08);
+    }
+
+    .chat-input-area button svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    /* Dark mode — ajustements spécifiques chat */
+    body.dark-mode .message.bot {
+      background: var(--bg-card);
+    }
+
+    body.dark-mode .chat-input-area input {
+      background: var(--bg-subtle);
+    }
+
+    /* Style du bandeau */
+    .flash-info {
+      width: 100%;
+      background-color: #005aab;
+      /* Bleu institutionnel */
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      padding: 12px 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      position: relative;
+      min-height: 48px;
+    }
+
+    .flash-alert-label {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 80px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: #2f9a30;
+      color: #ffffff;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    .contenu-defilant {
+      display: inline-block;
+      padding-left: 100%;
+      animation: defilement 20s linear infinite;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contenu-defilant:hover {
+      animation-play-state: paused;
+      /* Pause quand on passe la souris */
+    }
+
+    @keyframes defilement {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(-100%, 0);
+      }
+    }
+  </style>
+
+
 </head>
 
 <body>
-<script>if(localStorage.getItem('at-theme')==='dark')document.body.classList.add('dark-mode');</script>
+  <script>if (localStorage.getItem('at-theme') === 'dark') document.body.classList.add('dark-mode');</script>
 
   <!-- ── Navigation ── -->
   <nav class="navbar">
@@ -27,16 +436,22 @@
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-          <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer de thème">
-        <div class="theme-toggle-track">
-          <div class="theme-toggle-thumb">
-            <!-- moon (dark mode icon) -->
-            <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-            <!-- sun (light mode icon) -->
-            <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z"/></svg>
-          </div>
+    <button id="theme-toggle-btn" class="theme-toggle" aria-label="Basculer thème clair/sombre"
+      title="Changer de thème">
+      <div class="theme-toggle-track">
+        <div class="theme-toggle-thumb">
+          <!-- moon (dark mode icon) -->
+          <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+          </svg>
+          <!-- sun (light mode icon) -->
+          <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24">
+            <path
+              d="M12 4a8 8 0 1 0 0 16A8 8 0 0 0 12 4zm0-2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 12H2a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm15.364-6.364.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414zM4.929 18.364l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 1.414zM18.364 19.07l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM5.636 5.636 4.929 4.93a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 5.636 5.636z" />
+          </svg>
         </div>
-      </button>
+      </div>
+    </button>
     <div class="lang-toggle-group" role="group" aria-label="Langue / لغة">
       <button class="lang-option active" data-lang="fr">FR</button>
       <button class="lang-option" data-lang="ar">ع</button>
@@ -51,153 +466,193 @@
     <!-- ── Image Slider ── -->
     <div class="slider-section">
       <div class="slider-track-wrapper" id="slider-track">
-        <!-- Images chargées dynamiquement depuis la BDD -->
-        <!-- Fallback statique en attendant -->
         <div class="slider-img-card no-img">Chargement…</div>
       </div>
     </div>
+  </div>
 
-    <!-- ── Hero ── -->
-    <section class="hero">
-      <div class="hero-glow"></div>
-      <div style="width:100%;max-width:760px;margin:0 auto;text-align:center;">
-        <img src="AlgerieTelecom.png" alt="Algérie Télécom" class="hero-logo">
-        <div class="hero-badge" style="margin-top:22px;" data-i18n="hero.badge">Toujours proche · دائما أقرب</div>
-        <h1><span data-i18n="hero.title.line1">Bienvenue chez</span><br><span data-i18n="hero.title.line2">Algérie Télécom</span></h1>
-        <p data-i18n="hero.desc">Le premier opérateur national de télécommunications — connectant l'Algérie avec des solutions haut débit,
-          mobiles et d'entreprise.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-          <a href="services.html" class="btn btn-primary">
-            <svg viewBox="0 0 24 24">
-              <path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z" />
-            </svg>
-            <span data-i18n="hero.btn.services">Nos Services</span>
-          </a>
-          <a href="contact.html" class="btn btn-outline" data-i18n="hero.btn.contact">Nous Contacter</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Stats ── -->
-    <div class="stats-row">
-      <div class="stat-box">
-        <span class="stat-number">15M+</span>
-        <span class="stat-label" data-i18n="stat.abonnes">Abonnés</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-number" id="stat-wilayas">…</span>
-        <span class="stat-label" data-i18n="stat.wilayas">Wilayas couvertes</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-number">1 Gbps</span>
-        <span class="stat-label" data-i18n="stat.fibre">Fibre Optique</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-number">24/7</span>
-        <span class="stat-label" data-i18n="stat.support">Support Client</span>
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div style="width:100%;max-width:760px;margin:0 auto;text-align:center;">
+      <img src="AlgerieTelecom.png" alt="Algérie Télécom" class="hero-logo">
+      <div class="hero-badge" style="margin-top:22px;" data-i18n="hero.badge">Toujours proche · دائما أقرب</div>
+      <h1><span data-i18n="hero.title.line1">Bienvenue chez</span><br><span data-i18n="hero.title.line2">Algérie
+          Télécom</span></h1>
+      <p data-i18n="hero.desc">Le premier opérateur national de télécommunications — connectant l'Algérie avec des
+        solutions haut débit,
+        mobiles et d'entreprise.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+        <a href="services.html" class="btn btn-primary">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.65 1.81-.51l1.33.22zM11.17 17c.31-.13 3.58-1.53 5.87-3.57l.22 1.32c.14.66-.04 1.34-.51 1.81L12.7 20.5l-1.53-3.5zm5.56-11.19c-2.08-2.08-5.15-2.66-7.53-1.44L14.33 9.5l2.4-3.69zm-9.28 9.28c-1.08-1.08-1.08-2.83 0-3.91s2.83-1.08 3.91 0 1.08 2.83 0 3.91-2.83 1.08-3.91 0zM16.7 13.87c-1.22 2.38-1.8 5.45.28 7.53l3.69-2.4-4.13-5.13zm-13.57.28L2 15.28 8.72 22l1.13-1.13c.47-.47.65-1.15.51-1.81l-.22-1.33c-.31.13-3.58 1.53-5.87 3.57z" />
+          </svg>
+          <span data-i18n="hero.btn.services">Nos Services</span>
+        </a>
+        <a href="contact.html" class="btn btn-outline" data-i18n="hero.btn.contact">Nous Contacter</a>
       </div>
     </div>
+  </section>
 
-    <hr class="divider">
+  <div class="flash-info" style="border-radius: 50px;" title="🚨Alerte!🚨">
+    <span class="flash-alert-label">Alerte</span>
+    <div class="contenu-defilant">
+      📢 PROMOTION : Profitez de -20% sur nos offres fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de
+      vous._________________|________________ à l'occasion de la fête de l'indépendance, profitez de -15% sur nos offres
+      fibre jusqu'à la fin du mois ! | ⚡ Algérie Télécom : Plus proche de vous.
+    </div>
+  </div>
 
-    <!-- ── Présentation ── -->
-    <section class="section">
-      <div class="section-label" data-i18n="section.about.label">À Propos</div>
-      <h2 data-i18n-html="section.about.title">Le Pionnier des<br>Télécommunications</h2>
-      <p data-i18n="section.about.desc">Algérie Télécom est la principale entreprise de télécommunications en Algérie, engagée à fournir une
-        connectivité fiable, rapide et innovante à travers tout le territoire national.</p>
+  <!-- ── Stats ── -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <span class="stat-number">15M+</span>
+      <span class="stat-label" data-i18n="stat.abonnes">Abonnés</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number" id="stat-wilayas">…</span>
+      <span class="stat-label" data-i18n="stat.wilayas">Wilayas couvertes</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">1 Gbps</span>
+      <span class="stat-label" data-i18n="stat.fibre">Fibre Optique</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">24/7</span>
+      <span class="stat-label" data-i18n="stat.support">Support Client</span>
+    </div>
+  </div>
 
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-          </div>
-          <h3 data-i18n="card.internet.title">Internet Haut Débit</h3>
-          <p data-i18n="card.internet.desc">Surfer, télécharger et communiquer à grande vitesse grâce à notre infrastructure ADSL et Fibre Optique de dernière génération.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-          </div>
-          <h3 data-i18n="card.mobile.title">Services Mobiles</h3>
-          <p data-i18n="card.mobile.desc">Restez connecté avec vos proches où que vous soyez grâce à notre réseau mobile à couverture nationale étendue.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
-          </div>
-          <h3 data-i18n="card.biz.title">Solutions Entreprise</h3>
-          <p data-i18n="card.biz.desc">Optimisez vos communications professionnelles avec nos offres dédiées : VPN, téléphonie IP, connectivité sécurisée.</p>
-        </div>
-      </div>
-    </section>
+  <hr class="divider">
 
-    <hr class="divider">
+  <!-- ── Présentation ── -->
+  <section class="section">
+    <div class="section-label" data-i18n="section.about.label">À Propos</div>
+    <h2 data-i18n-html="section.about.title">Le Pionnier des<br>Télécommunications</h2>
+    <p data-i18n="section.about.desc">Algérie Télécom est la principale entreprise de télécommunications en Algérie,
+      engagée à fournir une
+      connectivité fiable, rapide et innovante à travers tout le territoire national.</p>
 
-    <!-- ── Nos Offres ── -->
-    <section class="section">
-      <div class="section-label" data-i18n="section.offers.label">Nos Offres</div>
-      <h2 data-i18n-html="section.offers.title">Des Solutions pour<br>Chaque Besoin</h2>
-      <p data-i18n="section.offers.desc">De la fibre optique ultra-rapide aux solutions d'entreprise, une offre adaptée à chaque client.</p>
-
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
-          </div>
-          <h3 data-i18n="card.adsl.title">ADSL</h3>
-          <p data-i18n="card.adsl.desc">Connexion haut débit accessible sur l'ensemble du réseau téléphonique national, idéale pour les particuliers.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-          </div>
-          <h3 data-i18n="card.fibre.title">Fibre Optique</h3>
-          <p data-i18n="card.fibre.desc">Vitesses exceptionnelles allant jusqu'à 1 Gbps grâce au réseau de fibre optique déployé dans les grandes villes.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          </div>
-          <h3 data-i18n="card.tel.title">Téléphonie Fixe</h3>
-          <p data-i18n="card.tel.desc">Qualité d'appel remarquable et tarifs avantageux sur notre réseau de téléphonie fixe historique.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Footer ── -->
-    <footer class="footer">
-      <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
-      <div class="footer-social">
-        <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-          </svg></a>
-        <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
             <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg></a>
-        <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
-          </svg></a>
-        <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-            <circle cx="4" cy="4" r="2" />
-          </svg></a>
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.internet.title">Internet Haut Débit</h3>
+        <p data-i18n="card.internet.desc">Surfer, télécharger et communiquer à grande vitesse grâce à notre
+          infrastructure ADSL et Fibre Optique de dernière génération.</p>
       </div>
-      <nav class="footer-nav-links" aria-label="Pied de page">
-        <a href="index.html">Accueil</a>
-        <a href="services.html">Services</a>
-        <a href="tarif.html">Tarifs</a>
-        <a href="about.html">À Propos</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
-      <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
-    </footer>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.mobile.title">Services Mobiles</h3>
+        <p data-i18n="card.mobile.desc">Restez connecté avec vos proches où que vous soyez grâce à notre réseau mobile à
+          couverture nationale étendue.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.biz.title">Solutions Entreprise</h3>
+        <p data-i18n="card.biz.desc">Optimisez vos communications professionnelles avec nos offres dédiées : VPN,
+          téléphonie IP, connectivité sécurisée.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── Nos Offres ── -->
+  <section class="section">
+    <div class="section-label" data-i18n="section.offers.label">Nos Offres</div>
+    <h2 data-i18n-html="section.offers.title">Des Solutions pour<br>Chaque Besoin</h2>
+    <p data-i18n="section.offers.desc">De la fibre optique ultra-rapide aux solutions d'entreprise, une offre adaptée à
+      chaque client.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.adsl.title">ADSL</h3>
+        <p data-i18n="card.adsl.desc">Connexion haut débit accessible sur l'ensemble du réseau téléphonique national,
+          idéale pour les particuliers.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.fibre.title">Fibre Optique</h3>
+        <p data-i18n="card.fibre.desc">Vitesses exceptionnelles allant jusqu'à 1 Gbps grâce au réseau de fibre optique
+          déployé dans les grandes villes.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+        </div>
+        <h3 data-i18n="card.tel.title">Téléphonie Fixe</h3>
+        <p data-i18n="card.tel.desc">Qualité d'appel remarquable et tarifs avantageux sur notre réseau de téléphonie
+          fixe historique.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <img src="AlgerieTelecom.png" alt="Logo" class="footer-logo-img">
+    <div class="footer-social">
+      <a href="https://www.facebook.com/AlgerieTelecom/?locale=fr_FR" title="Facebook" aria-label="Facebook"><svg
+          viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg></a>
+      <a href="https://x.com/Algerie_Telecom" title="Twitter" aria-label="Twitter"><svg viewBox="0 0 24 24"
+          fill="currentColor" stroke="none">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg></a>
+      <a href="https://www.instagram.com/algerietelecom" title="Instagram" aria-label="Instagram"><svg
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" />
+        </svg></a>
+      <a href="https://www.linkedin.com/company/algerie-telecom-/?originalSubdomain=dz" title="LinkedIn"
+        aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+          <circle cx="4" cy="4" r="2" />
+        </svg></a>
+    </div>
+    <nav class="footer-nav-links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="tarif.html">Tarifs</a>
+      <a href="about.html">À Propos</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-copy">© 2025 Algérie Télécom · Tous droits réservés</div>
+    <div class="footer-thesis">Projet de fin d'études — Informatique · Bases de Données</div>
+  </footer>
 
   </div>
 
@@ -206,7 +661,127 @@
       <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
     </svg>
   </button>
-  <script src="i18n.js"></script>
+
+  <!-- ── Chat Toggle Button ── -->
+  <button class="chat-toggle-btn" id="chatToggleBtn" aria-label="Ouvrir l'assistant virtuel" title="Assistant Virtuel">
+    <span class="chat-badge" aria-hidden="true"></span>
+    <!-- Icône chat -->
+    <svg class="icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H6l-4 4V4z" />
+
+    </svg>
+    <!-- Icône fermer -->
+    <svg class="icon-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+  </button>
+
+  <!-- ── Chat Window ── -->
+  <div class="chat-container" id="chatContainer" role="dialog" aria-label="Assistant Virtuel" aria-modal="false">
+    <div class="chat-header">
+      <div class="mini-logo">
+        <img src="Algerie_Telecom.svg.png" alt="Logo">
+      </div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Assistant Virtuel · المساعد الافتراضي</div>
+        <div class="chat-header-status">En ligne · متاح</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatBox">
+      <div class="message bot">Bonjour ! 👋 Comment puis-je vous aider ?<br>مرحبا! كيف يمكنني مساعدتك？</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="userInput" placeholder="Votre message · رسالتك…" autocomplete="off">
+      <button id="sendBtn" aria-label="Envoyer">
+        <svg viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /* ── Toggle visibilité du chat ── */
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+    const chatContainer = document.getElementById('chatContainer');
+
+    chatToggleBtn.addEventListener('click', () => {
+      const isOpen = chatContainer.classList.toggle('is-open');
+      chatToggleBtn.classList.toggle('is-open', isOpen);
+      chatToggleBtn.setAttribute('aria-label', isOpen ? 'Fermer l\'assistant' : 'Ouvrir l\'assistant virtuel');
+      if (isOpen) document.getElementById('userInput').focus();
+    });
+
+    /* ── Logique du chatbot ── */
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function isArabic(text) {
+      return /[\u0600-\u06FF]/.test(text);
+    }
+
+    function addMessage(text, side) {
+      const div = document.createElement('div');
+      div.className = 'message ' + side;
+      if (isArabic(text)) div.classList.add('rtl');
+      div.innerHTML = text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function showTyping() {
+      const t = document.createElement('div');
+      t.className = 'typing-indicator';
+      t.id = 'typingIndicator';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      chatBox.appendChild(t);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function hideTyping() {
+      const t = document.getElementById('typingIndicator');
+      if (t) t.remove();
+    }
+
+    function handleSend() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, 'user');
+      userInput.value = '';
+      showTyping();
+
+      setTimeout(() => {
+        hideTyping();
+        const msg = text.toLowerCase();
+        let response = '';
+
+        if (msg.includes('bonjour') || msg.includes('salut') || msg.includes('سلام') || msg.includes('صباح')) {
+          response = isArabic(text) ? 'مرحبا بك! كيف يمكنني مساعدتك اليوم؟' : 'Bonjour ! Comment puis-je vous aider aujourd\'hui ?';
+        } else if (msg.includes('tarif') || msg.includes('prix Idoom Fibre') || msg.includes('سعر ايدوم فايبر') || msg.includes('أسعار')) {
+          response = isArabic(text) ? 'تبدأ أسعار Idoom Fibre من 2999 دج شهريا بسرعة 15 ميجا.' : 'Nos tarifs Idoom Fibre commencent à 2999 DA/mois. <a href="tarif.html" style="color:var(--at-green);font-weight:600;">Voir tous les tarifs →</a>';
+        } else if (msg.includes('offre') || msg.includes('internet') || msg.includes('fibre') || msg.includes('adsl') || msg.includes('انترنت') || msg.includes('عروض')) {
+          response = isArabic(text) ? 'لدينا عروض متنوعة: Idoom Fibre، ADSL و 4G LTE.' : 'Nous proposons l\'ADSL, la Fibre Optique et les services mobiles. <a href="services.html" style="color:var(--at-green);font-weight:600;">Voir nos services →</a>';
+        } else if (msg.includes('contact') || msg.includes('appel') || msg.includes('téléphone') || msg.includes('تواصل')) {
+          response = isArabic(text) ? 'يمكنك التواصل معنا عبر صفحة الاتصال.' : 'Vous pouvez nous joindre via notre <a href="contact.html" style="color:var(--at-green);font-weight:600;">page Contact →</a>';
+        } else if (msg.includes('merci') || msg.includes('شكرا')) {
+          response = isArabic(text) ? 'على الرحب! أنا هنا دائما لخدمتك. 😊' : 'Avec plaisir ! Je reste à votre disposition. 😊';
+        } else if (msg.includes('service') || msg.includes('services') || msg.includes('خدمة') || msg.includes('خدمات')) {
+          response = isArabic(text) ? 'نقدم خدمات الإنترنت، الهاتف الثابت، والحلول للشركات.' : 'Nous offrons des services Internet, téléphonie fixe et solutions d\'entreprise.';
+        } else {
+          response = isArabic(text) ? 'عذرا، لم أفهم طلبك. اسألني عن الأسعار أو العروض أو التواصل.' : 'Je n\'ai pas bien compris. Posez-moi des questions sur les <strong>tarifs</strong>, <strong>services</strong> ou <strong>contact</strong>.';
+        }
+
+        addMessage(response, 'bot');
+      }, 850);
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+    userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleSend(); });
+  </script>
+
+  <script src="i18j.js"></script>
   <script src="main.js"></script>
 </body>
 
