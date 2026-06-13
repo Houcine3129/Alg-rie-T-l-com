@@ -306,7 +306,7 @@ body.dark-mode .icon-sun  { display: block; }
   background: var(--bg-base);
   padding: 16px 0 0;
   position: relative;
-  height: 200px;
+  height: 270px;
   transition: background var(--t);
 }
 
@@ -349,8 +349,8 @@ body.dark-mode .icon-sun  { display: block; }
 
 .slider-img-card {
   flex-shrink: 0;
-  width: 240px;
-  height: 160px;
+  width: 320px;
+  height: 220px;
   border-radius: var(--r-md);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -361,7 +361,10 @@ body.dark-mode .icon-sun  { display: block; }
 
 .slider-img-card:hover {
   transform: scale(1.04);
-  box-shadow: var(--shadow-green);
+  box-shadow: var(--shadow-lg), var(--shadow-green);
+  z-index: 5;
+  overflow: visible;
+  background: var(--bg-card);
 }
 
 .slider-img-card img {
@@ -372,6 +375,7 @@ body.dark-mode .icon-sun  { display: block; }
 }
 
 .slider-img-card:hover img {
+  object-fit: contain;
   filter: brightness(1.08);
 }
 
@@ -775,9 +779,15 @@ body.dark-mode .icon-sun  { display: block; }
   border-radius: var(--r-lg);
   padding: 32px 24px;
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
   opacity: 0;
   transform: translateY(20px);
+}
+
+.pricing-card .pricing-cta {
+  margin-top: auto;
 }
 
 .pricing-card.in-view {
@@ -1409,8 +1419,8 @@ body.dark-mode .icon-sun  { display: block; }
 
   .hero { min-height: 100svh; }
 
-  .slider-img-card { width: 180px; height: 120px; }
-  .slider-section   { height: 150px; }
+  .slider-img-card { width: 240px; height: 160px; }
+  .slider-section   { height: 200px; }
 
   .cards-grid { grid-template-columns: 1fr; }
   .pricing-container { flex-direction: column; align-items: center; }
@@ -1426,6 +1436,24 @@ body.dark-mode .icon-sun  { display: block; }
 }
 
 /* ─── Bouton de langue FR / AR ───────────────────────────────── */
+.nav-user-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--t);
+  flex-shrink: 0;
+  margin-left: 300px;
+}
+.nav-user-icon:hover {
+  background: var(--at-green-dim);
+  color: var(--at-green);
+}
+
 .lang-toggle-group {
   display: flex;
   background: var(--bg-subtle);
@@ -1820,3 +1848,7 @@ body.dark-mode .icon-sun  { display: block; }
   transform: scale(1.05) translateY(-2px);
   box-shadow: var(--shadow-lg), var(--shadow-green);
 }
+
+ .arrondi2 {
+  border-radius: 50px;
+ }
