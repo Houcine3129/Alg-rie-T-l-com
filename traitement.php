@@ -5,7 +5,7 @@
  * ============================================================
  */
 declare(strict_types=1);
-require_once 'php/config.php';
+require_once __DIR__ . '/php/config.php';
 session_start();
 
 define('REDIRECT_SUCCES', 'contact.html?statut=succes');

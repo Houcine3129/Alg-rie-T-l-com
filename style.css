@@ -1400,7 +1400,6 @@ body.dark-mode .icon-sun  { display: block; }
 
 @media (max-width: 768px) {
   .navbar { padding: 0 20px; }
-
   .nav-links {
     display: none;
     flex-direction: column;
@@ -1501,10 +1500,6 @@ body.dark-mode .icon-sun  { display: block; }
 [dir="rtl"] h4 {
   font-family: 'Cairo', 'Syne', sans-serif;
   letter-spacing: 0;
-}
-
-[dir="rtl"] .navbar {
-  flex-direction: row-reverse;
 }
 
 [dir="rtl"] .nav-links {

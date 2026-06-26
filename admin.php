@@ -11,7 +11,7 @@
  * ============================================================
  */
 declare(strict_types=1);
-require_once 'PHP\config.php';
+require_once __DIR__ . '/php/config.php';
 
 session_start();
 
