@@ -4,7 +4,7 @@
  *  ALGÉRIE TÉLÉCOM — Configuration & Connexion PDO
  * ============================================================
  */
-define('DB_HOST',    'localhost');
+define('DB_HOST',    '127.0.0.1');
 define('DB_NAME',    'algerie_telecom');
 define('DB_USER',    'root');
 define('DB_PASS',    '');
